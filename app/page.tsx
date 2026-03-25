@@ -26,14 +26,14 @@ export default function HomePage() {
         
         <div className="flex gap-4 mb-12">
           <Link 
-            href="/dashboard" 
-            className="px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition"
+            href="/auth/signup" 
+            className="px-8 py-4 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
           >
-            Get Started
+            Get Started →
           </Link>
           <Link 
             href="#pricing" 
-            className="px-6 py-3 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition"
+            className="px-8 py-4 border-2 border-gray-300 rounded-xl font-semibold hover:border-green-600 hover:text-green-600 transition-all"
           >
             View Pricing
           </Link>
@@ -178,7 +178,7 @@ export default function HomePage() {
               <span className="text-gray-600">/month</span>
             </div>
             <Link 
-              href="/dashboard?plan=basic" 
+              href="/auth/signup?plan=basic" 
               className="block w-full py-3 bg-green-600 text-white text-center rounded-lg font-medium hover:bg-green-700 transition mb-6"
             >
               Get Started
@@ -215,7 +215,7 @@ export default function HomePage() {
               <span className="text-gray-600">/month</span>
             </div>
             <Link 
-              href="/dashboard?plan=standard" 
+              href="/auth/signup?plan=standard" 
               className="block w-full py-3 bg-green-600 text-white text-center rounded-lg font-medium hover:bg-green-700 transition mb-6"
             >
               Get Started
@@ -253,7 +253,7 @@ export default function HomePage() {
               <span className="text-gray-600">/month</span>
             </div>
             <Link 
-              href="/dashboard?plan=premium" 
+              href="/auth/signup?plan=premium" 
               className="block w-full py-3 bg-green-600 text-white text-center rounded-lg font-medium hover:bg-green-700 transition mb-6"
             >
               Get Started
