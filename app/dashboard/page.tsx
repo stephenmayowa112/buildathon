@@ -52,75 +52,97 @@ export default function DashboardPage() {
       )}
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-4 gap-6 mb-6">
-        <div className="bg-green-600 text-white rounded-xl p-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6">
+        <div className="bg-green-600 text-white rounded-xl p-4 sm:p-6">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm opacity-90">Monthly Bill</span>
-            <span className="text-xl">💰</span>
+            <span className="text-xs sm:text-sm opacity-90">Monthly Bill</span>
+            <span className="text-lg sm:text-xl">💰</span>
           </div>
-          <div className="text-3xl font-bold mb-1">{formatCurrency(billing.monthlyBill)}</div>
-          <div className="text-sm opacity-90">📅 Due March 31,2026</div>
+          <div className="text-2xl sm:text-3xl font-bold mb-1">{formatCurrency(billing.monthlyBill)}</div>
+          <div className="text-xs sm:text-sm opacity-90">📅 Due March 31,2026</div>
         </div>
 
-        <div className="bg-white rounded-xl p-6 border border-gray-200">
+        <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-600">Daily Usage</span>
-            <span className="text-xl">⚡</span>
+            <span className="text-xs sm:text-sm text-gray-600">Daily Usage</span>
+            <span className="text-lg sm:text-xl">⚡</span>
           </div>
-          <div className="text-3xl font-bold mb-1">{dailyUsage} kWh</div>
-          <div className="text-sm text-gray-600">≈ 8% vs last week</div>
+          <div className="text-2xl sm:text-3xl font-bold mb-1">{dailyUsage} kWh</div>
+          <div className="text-xs sm:text-sm text-gray-600">≈ 8% vs last week</div>
         </div>
 
-        <div className="bg-white rounded-xl p-6 border border-gray-200">
+        <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-600">Active Plan</span>
-            <span className="text-xl">✅</span>
+            <span className="text-xs sm:text-sm text-gray-600">Active Plan</span>
+            <span className="text-lg sm:text-xl">✅</span>
           </div>
-          <div className="text-3xl font-bold mb-1">{plan.name}</div>
-          <div className="text-sm text-gray-600">{plan.monthlyLimit} kWh/mo ≈ ₦{plan.extraRate}/extra kWh</div>
+          <div className="text-2xl sm:text-3xl font-bold mb-1">{plan.name}</div>
+          <div className="text-xs sm:text-sm text-gray-600">{plan.monthlyLimit} kWh/mo ≈ ₦{plan.extraRate}/extra kWh</div>
         </div>
 
-        <div className="bg-white rounded-xl p-6 border border-gray-200">
+        <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-600">Payment Status</span>
-            <span className="text-xl">💳</span>
+            <span className="text-xs sm:text-sm text-gray-600">Payment Status</span>
+            <span className="text-lg sm:text-xl">💳</span>
           </div>
-          <div className={`text-3xl font-bold mb-1 ${
+          <div className={`text-2xl sm:text-3xl font-bold mb-1 ${
             paymentStatus === "paid" ? "text-green-600" : 
             paymentStatus === "overdue" ? "text-red-600" : "text-yellow-600"
           }`}>
             {paymentStatus === "paid" ? "Paid" : paymentStatus === "overdue" ? "Overdue" : "Pending"}
           </div>
-          <div className="text-sm text-gray-600">
+          <div className="text-xs sm:text-sm text-gray-600">
             {remainingBalance > 0 ? `${formatCurrency(remainingBalance)} invoice` : "All cleared"}
           </div>
         </div>
       </div>
 
+      {/* Overdue Alert - Mobile Optimized */}
+      {isOverdue && (
+        <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex items-start gap-3">
+            <span className="text-red-600 text-xl flex-shrink-0">⚠️</span>
+            <div>
+              <div className="font-bold text-red-900 mb-1">Payment Overdue - Action Required</div>
+              <div className="text-sm text-red-700">
+                Invoice INV - 2025 - 012 of {formatCurrency(billing.monthlyBill)} was due on 2025 - 12 -10. 
+                Please make payment to avoid service interruption.
+              </div>
+            </div>
+          </div>
+          <button
+            onClick={handleMakePayment}
+            className="w-full sm:w-auto px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition flex items-center justify-center gap-2 whitespace-nowrap"
+          >
+            Pay Now →
+          </button>
+        </div>
+      )}
+
       {/* Energy Usage Analytics */}
-      <div className="bg-white rounded-xl p-6 border border-gray-200 mb-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div>
-            <h2 className="text-xl font-bold">Energy Usage Analytics</h2>
-            <p className="text-sm text-gray-600">This week VS daily limit</p>
+            <h2 className="text-lg sm:text-xl font-bold">Energy Usage Analytics</h2>
+            <p className="text-xs sm:text-sm text-gray-600">This week VS daily limit</p>
           </div>
           <div className="flex gap-2">
-            <button className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm">Weekly</button>
-            <button className="px-4 py-2 bg-gray-900 text-white rounded-lg text-sm">Monthly</button>
+            <button className="flex-1 sm:flex-none px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm">Weekly</button>
+            <button className="flex-1 sm:flex-none px-4 py-2 bg-gray-900 text-white rounded-lg text-sm">Monthly</button>
           </div>
         </div>
-        <div className="h-64 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400">
+        <div className="h-48 sm:h-64 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 text-sm">
           Chart Placeholder - Usage Trend
         </div>
       </div>
 
       {/* Current Plan Details */}
-      <div className="bg-white rounded-xl p-6 border border-gray-200 mb-6">
+      <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200 mb-6">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-bold text-green-600">Current Plan</h2>
+          <h2 className="text-base sm:text-lg font-bold text-green-600">Current Plan</h2>
           <button className="text-green-600 hover:text-green-700">→</button>
         </div>
-        <h3 className="text-2xl font-bold mb-4">{plan.name} Plan</h3>
+        <h3 className="text-xl sm:text-2xl font-bold mb-4">{plan.name} Plan</h3>
         
         <div className="space-y-3 text-sm">
           <div className="flex justify-between py-2 border-b border-gray-100">
@@ -143,14 +165,14 @@ export default function DashboardPage() {
           )}
           <div className="flex justify-between py-3 pt-4">
             <span className="font-bold text-green-600">Total This Month</span>
-            <span className="font-bold text-xl">{formatCurrency(billing.monthlyBill)}</span>
+            <span className="font-bold text-lg sm:text-xl">{formatCurrency(billing.monthlyBill)}</span>
           </div>
         </div>
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-white rounded-xl p-6 border border-gray-200 mb-6">
-        <h2 className="text-xl font-bold mb-4">Quick Action</h2>
+      <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200 mb-6">
+        <h2 className="text-lg sm:text-xl font-bold mb-4">Quick Action</h2>
         <div className="space-y-3">
           <button
             onClick={handleMakePayment}
@@ -183,9 +205,9 @@ export default function DashboardPage() {
       </div>
 
       {/* Recent Payments */}
-      <div className="bg-white rounded-xl p-6 border border-gray-200">
+      <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold">Recent Payment</h2>
+          <h2 className="text-lg sm:text-xl font-bold">Recent Payment</h2>
           <button className="text-green-600 hover:text-green-700 text-sm">View All →</button>
         </div>
         <div className="space-y-3">
@@ -197,20 +219,20 @@ export default function DashboardPage() {
           ].map((payment, idx) => (
             <div
               key={idx}
-              className={`flex items-center justify-between p-4 rounded-lg ${
+              className={`flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-lg gap-3 ${
                 payment.status === "Pending" ? "bg-yellow-50" : "bg-gray-50"
               }`}
             >
               <div className="flex items-center gap-3">
                 <span className="text-xl">💳</span>
                 <div>
-                  <div className="font-medium">{payment.id}</div>
-                  <div className="text-sm text-gray-600">Date: {payment.date}</div>
+                  <div className="font-medium text-sm">{payment.id}</div>
+                  <div className="text-xs text-gray-600">Date: {payment.date}</div>
                 </div>
               </div>
-              <div className="text-right">
+              <div className="text-right sm:text-left">
                 <div className="font-bold">{formatCurrency(payment.amount)}</div>
-                <div className={`text-sm ${
+                <div className={`text-xs sm:text-sm ${
                   payment.status === "Paid" ? "text-green-600" : "text-yellow-600"
                 }`}>
                   {payment.status}
