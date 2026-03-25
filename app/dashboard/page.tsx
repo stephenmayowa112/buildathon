@@ -19,7 +19,7 @@ export default function DashboardPage() {
   const paymentStatus = remainingBalance === 0 ? "paid" : isOverdue ? "overdue" : "pending";
 
   const handleMakePayment = () => {
-    setAmountPaid(billing.monthlyBill);
+    router.push("/dashboard/payment");
   };
 
   return (

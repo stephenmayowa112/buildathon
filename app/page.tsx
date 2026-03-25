@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -58,6 +59,14 @@ export default function HomePage() {
       {/* Image Placeholder */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         <div className="bg-gray-200 rounded-2xl h-96 relative overflow-hidden">
+          <Image 
+            src="/images/solar-placeholder.png" 
+            alt="Business building powered by solar panels"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/20"></div> {/* Subtle overlay for better text readability */}
           <div className="absolute bottom-6 left-6">
             <div className="bg-green-600 text-white px-4 py-2 rounded-lg font-medium">
               Monthly Savings<br />₦50,000
