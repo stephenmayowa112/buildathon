@@ -69,8 +69,8 @@ export default function PaymentPage() {
       async (response) => {
         try {
           await updatePaymentData(paymentData.id, {
-            amount_paid: paymentData.amount_paid + amount,
-            remaining_balance: 0,
+            amountPaid: paymentData.amountPaid + amount,
+            remainingBalance: 0,
             status: "paid",
           });
 
@@ -118,7 +118,7 @@ export default function PaymentPage() {
     );
   }
 
-  const amountToPay = paymentData.remaining_balance || paymentData.total_bill;
+  const amountToPay = paymentData.remainingBalance || paymentData.totalBill;
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -140,15 +140,15 @@ export default function PaymentPage() {
           </div>
           <div className="flex justify-between py-3 border-b border-gray-100">
             <span className="text-gray-600">Total Bill</span>
-            <span className="font-semibold">{formatCurrency(paymentData.total_bill)}</span>
+            <span className="font-semibold">{formatCurrency(paymentData.totalBill)}</span>
           </div>
           <div className="flex justify-between py-3 border-b border-gray-100">
             <span className="text-gray-600">Amount Paid</span>
-            <span className="font-semibold text-green-600">{formatCurrency(paymentData.amount_paid)}</span>
+            <span className="font-semibold text-green-600">{formatCurrency(paymentData.amountPaid)}</span>
           </div>
           <div className="flex justify-between py-3 border-b border-gray-100">
             <span className="text-gray-600">Due Date</span>
-            <span className="font-semibold">{new Date(paymentData.due_date).toLocaleDateString()}</span>
+            <span className="font-semibold">{new Date(paymentData.dueDate).toLocaleDateString()}</span>
           </div>
           <div className="flex justify-between py-4 pt-6">
             <span className="text-xl font-bold">Amount to Pay</span>
