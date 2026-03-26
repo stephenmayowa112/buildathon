@@ -59,13 +59,13 @@ export default function PlansPage() {
               <div className="text-4xl font-bold mb-1">₦15k</div>
               <div className="text-gray-600">/ month</div>
               <div className="text-sm text-gray-500 mt-2">
-                Includes 100 kWh ~ ₦200/extra kWh
+                Includes 600 kWh ~ ₦50/extra kWh
               </div>
             </div>
 
             <ul className="space-y-3 mb-8 text-sm">
-              <li>Up to 100 kWh/month included</li>
-              <li>₦200 per extra kWh</li>
+              <li>Up to 600 kWh/month included</li>
+              <li>₦50 per extra kWh</li>
               <li>Standard support (48h response)</li>
               <li>Monthly usage reports</li>
               <li>Basic monitoring dashboard</li>
@@ -97,13 +97,13 @@ export default function PlansPage() {
               <div className="text-4xl font-bold mb-1">₦25K</div>
               <div className="text-green-100">/ month</div>
               <div className="text-sm text-green-200 mt-2">
-                Includes 200 kWh ~ ₦180/extra kWh
+                Includes 1200 kWh ~ ₦40/extra kWh
               </div>
             </div>
 
             <ul className="space-y-3 mb-8 text-sm text-green-50">
-              <li>Up to 200 kWh/month included</li>
-              <li>₦200 per extra kWh</li>
+              <li>Up to 1200 kWh/month included</li>
+              <li>₦40 per extra kWh</li>
               <li>Priority support (24h response)</li>
               <li>Real time usage analytics</li>
               <li>Advanced monitoring dashboard</li>
@@ -129,17 +129,20 @@ export default function PlansPage() {
             </div>
 
             <div className="mb-6">
-              <div className="text-4xl font-bold mb-1">₦40k</div>
+              <div className="text-4xl font-bold mb-1">₦45k</div>
               <div className="text-gray-600">/ month</div>
               <div className="text-sm text-gray-500 mt-2">
-                Includes 400 kWh ~ ₦150/extra kWh
+                Includes 2500 kWh ~ ₦30/extra kWh
               </div>
             </div>
 
             <ul className="space-y-3 mb-8 text-sm">
-              <li>Up to 400 kWh/month included</li>
-              <li>₦150 per extra kWh</li>
-              <li>Dedication support (4h response)</li>
+              <li>Up to 2500 kWh/month included</li>
+              <li>₦30 per extra kWh</li>
+              <li>Dedicated support (4h response)</li>
+              <li>Full analytics suite</li>
+              <li>Advanced monitoring dashboard</li>
+              <li>Unlimited business locations</li>
             </ul>
 
             <button

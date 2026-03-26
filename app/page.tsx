@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Zap, CheckCircle, TrendingUp, DollarSign, Clock, Users } from "lucide-react";
@@ -193,7 +194,7 @@ export default function HomePage() {
             <h3 className="text-2xl font-bold mb-2">Basic</h3>
             <p className="text-gray-600 mb-6">Perfect for small shops</p>
             <div className="mb-6">
-              <span className="text-4xl font-bold">₦60,000</span>
+              <span className="text-4xl font-bold">₦15,000</span>
               <span className="text-gray-600">/month</span>
             </div>
             <Link 
@@ -205,11 +206,11 @@ export default function HomePage() {
             <ul className="space-y-3">
               <li className="flex items-center gap-2">
                 <span className="text-green-600">✓</span>
-                <span>300 kWh monthly limit</span>
+                <span>600 kWh monthly limit</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-green-600">✓</span>
-                <span>₦250/kWh extra rate</span>
+                <span>₦50/kWh extra rate</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-green-600">✓</span>
@@ -230,7 +231,7 @@ export default function HomePage() {
             <h3 className="text-2xl font-bold mb-2">Standard</h3>
             <p className="text-gray-600 mb-6">For growing businesses</p>
             <div className="mb-6">
-              <span className="text-4xl font-bold">₦90,000</span>
+              <span className="text-4xl font-bold">₦25,000</span>
               <span className="text-gray-600">/month</span>
             </div>
             <Link 
@@ -242,11 +243,11 @@ export default function HomePage() {
             <ul className="space-y-3">
               <li className="flex items-center gap-2">
                 <span className="text-green-600">✓</span>
-                <span>500 kWh monthly limit</span>
+                <span>1200 kWh monthly limit</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-green-600">✓</span>
-                <span>₦200/kWh extra rate</span>
+                <span>₦40/kWh extra rate</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-green-600">✓</span>
@@ -268,7 +269,7 @@ export default function HomePage() {
             <h3 className="text-2xl font-bold mb-2">Premium</h3>
             <p className="text-gray-600 mb-6">For large operations</p>
             <div className="mb-6">
-              <span className="text-4xl font-bold">₦150,000</span>
+              <span className="text-4xl font-bold">₦45,000</span>
               <span className="text-gray-600">/month</span>
             </div>
             <Link 
@@ -280,11 +281,11 @@ export default function HomePage() {
             <ul className="space-y-3">
               <li className="flex items-center gap-2">
                 <span className="text-green-600">✓</span>
-                <span>1000 kWh monthly limit</span>
+                <span>2500 kWh monthly limit</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-green-600">✓</span>
-                <span>₦150/kWh extra rate</span>
+                <span>₦30/kWh extra rate</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-green-600">✓</span>
