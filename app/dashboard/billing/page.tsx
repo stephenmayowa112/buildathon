@@ -1,19 +1,49 @@
 "use client";
 
 import { useState } from "react";
-import { formatCurrency } from "@/lib/billing";
+import { formatCurrency, getPaymentStatus } from "@/lib/billing";
+import { AlertCircle } from "lucide-react";
 
 export default function BillingPage() {
   const [totalBill] = useState(345000);
   const [amountPaid, setAmountPaid] = useState(195000);
+  const [dueDate] = useState("2026-03-20"); // Past date to trigger overdue
   const outstandingBalance = totalBill - amountPaid;
 
-  const handlePayment = () => {
-    setAmountPaid(totalBill);
+  const paymentStatus = getPaymentStatus(dueDate, outstandingBalance);
+
+  const handlePayment = (amount?: number) => {
+    if (amount) {
+      // Partial payment
+      setAmountPaid(Math.min(amountPaid + amount, totalBill));
+    } else {
+      // Full payment
+      setAmountPaid(totalBill);
+    }
   };
 
   return (
     <div>
+      {/* Overdue Banner */}
+      {paymentStatus.showOverdueBanner && (
+        <div className="bg-red-600 text-white p-4 rounded-xl mb-6 flex items-center gap-3">
+          <AlertCircle className="w-6 h-6 flex-shrink-0" />
+          <div className="flex-1">
+            <div className="font-bold mb-1">Payment Overdue</div>
+            <div className="text-sm">
+              Your payment of {formatCurrency(outstandingBalance)} was due on {new Date(dueDate).toLocaleDateString()}. 
+              Please make a payment to avoid service interruption.
+            </div>
+          </div>
+          <button
+            onClick={() => handlePayment()}
+            className="px-4 py-2 bg-white text-red-600 rounded-lg font-medium hover:bg-gray-100 transition whitespace-nowrap"
+          >
+            Pay Now
+          </button>
+        </div>
+      )}
+
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-3xl font-bold mb-2">Billing & Payments</h1>
@@ -26,7 +56,7 @@ export default function BillingPage() {
             Download Statement
           </button>
           <button
-            onClick={handlePayment}
+            onClick={() => handlePayment()}
             className="px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition"
           >
             Make Payment
@@ -35,20 +65,28 @@ export default function BillingPage() {
       </div>
 
       {/* Top Stats */}
-      <div className="grid grid-cols-3 gap-6 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
         <div className="bg-white rounded-xl p-6 border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Monthly Bill</span>
             <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Current Cycle</span>
           </div>
           <div className="text-3xl font-bold mb-1">{formatCurrency(totalBill)}</div>
-          <p className="text-sm text-gray-600">Aggregated Total for the december billing cycle</p>
+          <p className="text-sm text-gray-600">Aggregated Total for the March billing cycle</p>
         </div>
 
         <div className="bg-white rounded-xl p-6 border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Amount Paid</span>
-            <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Current Cycle</span>
+            <span className={`px-2 py-1 rounded text-xs ${
+              paymentStatus.status === "paid" 
+                ? "bg-green-100 text-green-700" 
+                : paymentStatus.status === "overdue"
+                ? "bg-red-100 text-red-700"
+                : "bg-gray-100 text-gray-700"
+            }`}>
+              {paymentStatus.status === "paid" ? "Paid" : paymentStatus.status === "overdue" ? "Overdue" : "Pending"}
+            </span>
           </div>
           <div className="text-3xl font-bold mb-1">{formatCurrency(amountPaid)}</div>
           <p className="text-sm text-gray-600">Total successfully processed payment this month</p>
@@ -57,14 +95,21 @@ export default function BillingPage() {
         <div className="bg-white rounded-xl p-6 border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Outstanding Balance</span>
-            <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Current Cycle</span>
+            <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Due Date</span>
           </div>
-          <div className="text-3xl font-bold mb-1">{formatCurrency(outstandingBalance)}</div>
-          <p className="text-sm text-gray-600">Remaining balance due by December 31, 2026</p>
+          <div className={`text-3xl font-bold mb-1 ${paymentStatus.status === "overdue" ? "text-red-600" : ""}`}>
+            {formatCurrency(outstandingBalance)}
+          </div>
+          <p className="text-sm text-gray-600">
+            {outstandingBalance === 0 
+              ? "Fully paid - Thank you!" 
+              : `Remaining balance due by ${new Date(dueDate).toLocaleDateString()}`
+            }
+          </p>
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
         {/* Default Payment Method */}
         <div className="bg-white rounded-xl p-6 border border-gray-200">
           <h3 className="font-bold mb-2">Default Payment Method</h3>
@@ -87,23 +132,41 @@ export default function BillingPage() {
           <h3 className="font-bold mb-2">Next Auto Pay</h3>
           <p className="text-sm text-gray-600 mb-4">Automated deduction Schedule</p>
           
-          <div className="text-3xl font-bold mb-2">Jan 01</div>
-          <p className="text-sm text-gray-600 mb-4">Automated deduction Schedule</p>
+          <div className="text-3xl font-bold mb-2">Apr 01</div>
+          <p className="text-sm text-gray-600 mb-4">Next scheduled payment date</p>
           <button className="text-sm text-green-600 hover:underline">Manage Auto Pay</button>
         </div>
 
         {/* Quick Settlement */}
-        <div className="bg-green-50 rounded-xl p-6 border border-green-200">
+        <div className={`rounded-xl p-6 border ${
+          outstandingBalance > 0 
+            ? "bg-green-50 border-green-200" 
+            : "bg-gray-50 border-gray-200"
+        }`}>
           <h3 className="font-bold mb-2">Quick Settlement</h3>
-          <p className="text-sm text-gray-600 mb-4">
-            Pay your outstanding {formatCurrency(outstandingBalance)} balance in one click to avoid service interruption.
-          </p>
-          <button
-            onClick={handlePayment}
-            className="w-full py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition"
-          >
-            Pay {formatCurrency(outstandingBalance)} Now
-          </button>
+          {outstandingBalance > 0 ? (
+            <>
+              <p className="text-sm text-gray-600 mb-4">
+                Pay your outstanding {formatCurrency(outstandingBalance)} balance in one click to avoid service interruption.
+              </p>
+              <button
+                onClick={() => handlePayment()}
+                className="w-full py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition mb-2"
+              >
+                Pay {formatCurrency(outstandingBalance)} Now
+              </button>
+              <button
+                onClick={() => handlePayment(50000)}
+                className="w-full py-2 border border-green-600 text-green-600 rounded-lg text-sm hover:bg-green-50 transition"
+              >
+                Make Partial Payment
+              </button>
+            </>
+          ) : (
+            <p className="text-sm text-gray-600">
+              ✓ Your account is fully paid. Thank you for your prompt payment!
+            </p>
+          )}
         </div>
       </div>
 
@@ -138,49 +201,37 @@ export default function BillingPage() {
                 <td className="px-4 py-4 text-sm font-medium">INV-2026-005</td>
                 <td className="px-4 py-4 text-sm">Feb 12, 2026</td>
                 <td className="px-4 py-4 text-sm">Mastercard ····· 4242</td>
-                <td className="px-4 py-4 text-sm font-bold">150,000</td>
+                <td className="px-4 py-4 text-sm font-bold">₦150,000</td>
                 <td className="px-4 py-4">
                   <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">
                     Paid
                   </span>
                 </td>
-                <td className="px-4 py-4 text-sm text-gray-600">Stable</td>
+                <td className="px-4 py-4 text-sm text-green-600 hover:underline cursor-pointer">Download</td>
               </tr>
               <tr>
-                <td className="px-4 py-4 text-sm font-medium">INV-2026-005</td>
+                <td className="px-4 py-4 text-sm font-medium">INV-2026-004</td>
                 <td className="px-4 py-4 text-sm">Feb 22, 2026</td>
                 <td className="px-4 py-4 text-sm">Direct Bank</td>
-                <td className="px-4 py-4 text-sm font-bold">150,000</td>
+                <td className="px-4 py-4 text-sm font-bold">₦45,000</td>
                 <td className="px-4 py-4">
                   <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">
                     Paid
                   </span>
                 </td>
-                <td className="px-4 py-4 text-sm text-gray-600">Stable</td>
+                <td className="px-4 py-4 text-sm text-green-600 hover:underline cursor-pointer">Download</td>
               </tr>
               <tr>
-                <td className="px-4 py-4 text-sm font-medium">INV-2026-005</td>
+                <td className="px-4 py-4 text-sm font-medium">INV-2026-003</td>
                 <td className="px-4 py-4 text-sm">Mar 02, 2026</td>
                 <td className="px-4 py-4 text-sm">Mastercard ····· 4242</td>
-                <td className="px-4 py-4 text-sm font-bold">150,000</td>
+                <td className="px-4 py-4 text-sm font-bold">₦150,000</td>
                 <td className="px-4 py-4">
-                  <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">
-                    Paid
+                  <span className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-medium">
+                    Overdue
                   </span>
                 </td>
-                <td className="px-4 py-4 text-sm text-gray-600">Stable</td>
-              </tr>
-              <tr>
-                <td className="px-4 py-4 text-sm font-medium">INV-2026-005</td>
-                <td className="px-4 py-4 text-sm">Mar 12, 2026</td>
-                <td className="px-4 py-4 text-sm">Visa ····· 4242</td>
-                <td className="px-4 py-4 text-sm font-bold">150,000</td>
-                <td className="px-4 py-4">
-                  <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">
-                    Paid
-                  </span>
-                </td>
-                <td className="px-4 py-4 text-sm text-gray-600">Stable</td>
+                <td className="px-4 py-4 text-sm text-red-600 hover:underline cursor-pointer">Pay Now</td>
               </tr>
             </tbody>
           </table>
