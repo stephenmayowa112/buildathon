@@ -1,47 +1,86 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/lib/AuthProvider";
 import { 
   initializeInlinePayment, 
   generateTransactionReference,
-  formatAmount 
 } from "@/lib/interswitch";
 import { formatCurrency } from "@/lib/billing";
+import { getCurrentPayment, updatePaymentData } from "@/lib/database";
+import { getProfile } from "@/lib/auth";
 
 export default function PaymentPage() {
   const router = useRouter();
+  const { user } = useAuth();
   const [isProcessing, setIsProcessing] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState<"card" | "bank">("card");
-  
-  // Mock data - in production, get from state/props
-  const monthlyBill = 90000;
-  const userEmail = "demo@voltpay.com";
-  const userName = "Alex Bright";
+  const [paymentData, setPaymentData] = useState<any>(null);
+  const [profile, setProfile] = useState<any>(null);
+
+  useEffect(() => {
+    async function loadData() {
+      if (!user) {
+        router.push("/auth/signin");
+        return;
+      }
+
+      try {
+        const [userProfile, currentPayment] = await Promise.all([
+          getProfile(user.id),
+          getCurrentPayment(user.id),
+        ]);
+
+        setProfile(userProfile);
+        setPaymentData(currentPayment);
+      } catch (error) {
+        console.error("Error loading data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadData();
+  }, [user, router]);
 
   const handlePayment = () => {
+    if (!user || !paymentData || !profile) return;
+
     setIsProcessing(true);
 
     const transactionRef = generateTransactionReference();
+    const amount = paymentData.remaining_balance || paymentData.total_bill;
 
-    const paymentData = {
-      amount: monthlyBill,
-      customerId: "CUST_001",
-      customerEmail: userEmail,
-      customerName: userName,
+    const paymentConfig = {
+      amount: amount,
+      customerId: user.id,
+      customerEmail: user.email || "",
+      customerName: profile.full_name || profile.business_name || "Customer",
       transactionReference: transactionRef,
-      currency: "566", // NGN
-      payItemId: process.env.NEXT_PUBLIC_PAY_ITEM_ID || "",
-      merchantCode: process.env.NEXT_PUBLIC_MERCHANT_CODE || "",
+      currency: "566",
+      payItemId: process.env.NEXT_PUBLIC_INTERSWITCH_PAY_ITEM_ID || "Default_Payable_MX26070",
+      merchantCode: process.env.NEXT_PUBLIC_INTERSWITCH_MERCHANT_CODE || "MX26070",
     };
 
     initializeInlinePayment(
-      paymentData,
-      (response) => {
-        console.log("Payment successful:", response);
-        setIsProcessing(false);
-        // Redirect to success page
-        router.push(`/payment/success?ref=${transactionRef}`);
+      paymentConfig,
+      async (response) => {
+        try {
+          await updatePaymentData(paymentData.id, {
+            amount_paid: paymentData.amount_paid + amount,
+            remaining_balance: 0,
+            status: "paid",
+          });
+
+          router.push(`/payment/success?ref=${transactionRef}`);
+        } catch (error) {
+          console.error("Error updating payment:", error);
+          alert("Payment successful but failed to update records. Please contact support.");
+        } finally {
+          setIsProcessing(false);
+        }
       },
       (error) => {
         console.error("Payment failed:", error);
@@ -50,6 +89,36 @@ export default function PaymentPage() {
       }
     );
   };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <div className="animate-spin text-4xl mb-4">⏳</div>
+          <div className="text-gray-600">Loading payment details...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!paymentData) {
+    return (
+      <div className="max-w-2xl mx-auto">
+        <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
+          <h2 className="font-bold mb-2">No Pending Payment</h2>
+          <p className="text-gray-700">You don't have any pending payments at the moment.</p>
+          <button
+            onClick={() => router.push("/dashboard")}
+            className="mt-4 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+          >
+            Go to Dashboard
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const amountToPay = paymentData.remaining_balance || paymentData.total_bill;
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -66,25 +135,25 @@ export default function PaymentPage() {
         
         <div className="space-y-4 mb-6">
           <div className="flex justify-between py-3 border-b border-gray-100">
-            <span className="text-gray-600">Subscription Plan</span>
-            <span className="font-semibold">Standard Plan</span>
+            <span className="text-gray-600">Customer</span>
+            <span className="font-semibold">{profile?.business_name || profile?.full_name}</span>
           </div>
           <div className="flex justify-between py-3 border-b border-gray-100">
-            <span className="text-gray-600">Billing Period</span>
-            <span className="font-semibold">March 2026</span>
+            <span className="text-gray-600">Total Bill</span>
+            <span className="font-semibold">{formatCurrency(paymentData.total_bill)}</span>
           </div>
           <div className="flex justify-between py-3 border-b border-gray-100">
-            <span className="text-gray-600">Base Price</span>
-            <span className="font-semibold">{formatCurrency(90000)}</span>
+            <span className="text-gray-600">Amount Paid</span>
+            <span className="font-semibold text-green-600">{formatCurrency(paymentData.amount_paid)}</span>
           </div>
           <div className="flex justify-between py-3 border-b border-gray-100">
-            <span className="text-gray-600">Extra Charges</span>
-            <span className="font-semibold">{formatCurrency(0)}</span>
+            <span className="text-gray-600">Due Date</span>
+            <span className="font-semibold">{new Date(paymentData.due_date).toLocaleDateString()}</span>
           </div>
           <div className="flex justify-between py-4 pt-6">
-            <span className="text-xl font-bold">Total Amount</span>
+            <span className="text-xl font-bold">Amount to Pay</span>
             <span className="text-2xl font-bold text-green-600">
-              {formatCurrency(monthlyBill)}
+              {formatCurrency(amountToPay)}
             </span>
           </div>
         </div>
@@ -133,7 +202,7 @@ export default function PaymentPage() {
               Processing...
             </span>
           ) : (
-            `Pay ${formatCurrency(monthlyBill)} with Interswitch`
+            `Pay ${formatCurrency(amountToPay)} with Interswitch`
           )}
         </button>
 
@@ -144,8 +213,27 @@ export default function PaymentPage() {
         </div>
       </div>
 
+      {/* Test Card Info (Remove in production) */}
+      <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-6">
+        <div className="flex items-start gap-3">
+          <span className="text-2xl">💳</span>
+          <div>
+            <h3 className="font-bold mb-2">Test Card (Sandbox Mode)</h3>
+            <p className="text-sm text-gray-700 mb-2">
+              Use this test card for demo:
+            </p>
+            <div className="text-sm font-mono bg-white p-3 rounded border">
+              <div>Card: 5060990580000217499</div>
+              <div>Expiry: 12/25</div>
+              <div>CVV: 111</div>
+              <div>PIN: 1111</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Security Info */}
-      <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
+      <div className="bg-green-50 border border-green-200 rounded-xl p-6">
         <div className="flex items-start gap-3">
           <span className="text-2xl">🛡️</span>
           <div>
