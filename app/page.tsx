@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Zap, CheckCircle, TrendingUp, DollarSign, Clock, Users } from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -11,8 +11,9 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
         <div className="inline-block mb-6">
-          <span className="px-4 py-2 bg-green-50 text-green-600 rounded-full text-sm font-medium border border-green-200">
-            ⚡Reliable Clean Energy
+          <span className="px-4 py-2 bg-green-50 text-green-600 rounded-full text-sm font-medium border border-green-200 flex items-center gap-2 w-fit">
+            <Zap className="w-4 h-4" />
+            Reliable Clean Energy
           </span>
         </div>
         
@@ -40,17 +41,26 @@ export default function HomePage() {
           </Link>
         </div>
         
-        <div className="flex gap-12 text-center">
-          <div>
-            <div className="text-3xl font-bold">500+</div>
+        <div className="flex flex-wrap gap-8 sm:gap-12 text-center">
+          <div className="flex flex-col items-center">
+            <div className="flex items-center gap-2 mb-2">
+              <Users className="w-6 h-6 text-green-600" />
+              <div className="text-3xl font-bold">500+</div>
+            </div>
             <div className="text-gray-600">Active Businesses</div>
           </div>
-          <div>
-            <div className="text-3xl font-bold">40%</div>
+          <div className="flex flex-col items-center">
+            <div className="flex items-center gap-2 mb-2">
+              <TrendingUp className="w-6 h-6 text-green-600" />
+              <div className="text-3xl font-bold">40%</div>
+            </div>
             <div className="text-gray-600">Average Savings</div>
           </div>
-          <div>
-            <div className="text-3xl font-bold">24/7</div>
+          <div className="flex flex-col items-center">
+            <div className="flex items-center gap-2 mb-2">
+              <Clock className="w-6 h-6 text-green-600" />
+              <div className="text-3xl font-bold">24/7</div>
+            </div>
             <div className="text-gray-600">Support</div>
           </div>
         </div>

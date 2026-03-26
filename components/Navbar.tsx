@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Menu, X, Zap } from "lucide-react";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -12,7 +13,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center gap-2 group">
             <div className="w-9 h-9 bg-green-600 rounded-lg flex items-center justify-center group-hover:bg-green-700 transition">
-              <span className="text-white font-bold text-lg">⚡</span>
+              <Zap className="w-5 h-5 text-white" />
             </div>
             <span className="text-2xl font-bold">VOLTPAY</span>
           </Link>
@@ -32,9 +33,9 @@ export default function Navbar() {
             </Link>
             <Link 
               href="/auth/signup" 
-              className="px-5 py-2.5 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+              className="px-5 py-2.5 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center gap-2"
             >
-              Get Started →
+              Get Started
             </Link>
           </div>
 
@@ -43,7 +44,7 @@ export default function Navbar() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-2 rounded-lg hover:bg-gray-100"
           >
-            <span className="text-2xl">{mobileMenuOpen ? "✕" : "☰"}</span>
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 

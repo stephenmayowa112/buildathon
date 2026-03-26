@@ -3,6 +3,19 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { 
+  LayoutDashboard, 
+  Zap, 
+  CreditCard, 
+  BarChart3, 
+  Settings, 
+  Menu, 
+  X, 
+  Bell, 
+  Search,
+  LogOut,
+  FileText
+} from "lucide-react";
 
 export default function DashboardLayout({
   children,
@@ -15,11 +28,11 @@ export default function DashboardLayout({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { name: "Dashboard", path: "/dashboard", icon: "📊" },
-    { name: "Energy Usage", path: "/dashboard/energy", icon: "⚡" },
-    { name: "Billing", path: "/dashboard/billing", icon: "💳" },
-    { name: "Reports", path: "/dashboard/reports", icon: "📈" },
-    { name: "Settings", path: "/dashboard/settings", icon: "⚙️" },
+    { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
+    { name: "Energy Usage", path: "/dashboard/energy", icon: Zap },
+    { name: "Billing", path: "/dashboard/billing", icon: CreditCard },
+    { name: "Reports", path: "/dashboard/reports", icon: BarChart3 },
+    { name: "Settings", path: "/dashboard/settings", icon: Settings },
   ];
 
   const handleLogout = () => {
@@ -50,21 +63,21 @@ export default function DashboardLayout({
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <div className="w-9 h-9 bg-green-600 rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-lg">⚡</span>
+              <Zap className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold">VOLTPAY</span>
           </Link>
           
           <div className="flex items-center gap-2">
             <button className="relative p-2 hover:bg-gray-100 rounded-xl transition">
-              <span className="text-xl">🔔</span>
+              <Bell className="w-5 h-5 text-gray-600" />
               <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 hover:bg-gray-100 rounded-xl transition"
             >
-              <span className="text-2xl">{mobileMenuOpen ? "✕" : "☰"}</span>
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
@@ -89,7 +102,7 @@ export default function DashboardLayout({
             <div className="flex items-center justify-between mb-6">
               <Link href="/" className="flex items-center gap-2">
                 <div className="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">⚡</span>
+                  <Zap className="w-6 h-6 text-white" />
                 </div>
                 <span className="text-xl font-bold">VOLTPAY</span>
               </Link>
@@ -97,7 +110,7 @@ export default function DashboardLayout({
                 onClick={() => setMobileMenuOpen(false)}
                 className="p-2 hover:bg-gray-100 rounded-lg"
               >
-                <span className="text-2xl">✕</span>
+                <X className="w-5 h-5" />
               </button>
             </div>
 
@@ -114,34 +127,39 @@ export default function DashboardLayout({
           </div>
 
           <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                href={item.path}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                  pathname === item.path
-                    ? "bg-green-600 text-white shadow-lg"
-                    : "text-gray-700 hover:bg-gray-100"
-                }`}
-              >
-                <span className="text-xl">{item.icon}</span>
-                <span className="font-medium">{item.name}</span>
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.path}
+                  href={item.path}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                    pathname === item.path
+                      ? "bg-green-600 text-white shadow-lg"
+                      : "text-gray-700 hover:bg-gray-100"
+                  }`}
+                >
+                  <Icon className="w-5 h-5" />
+                  <span className="font-medium">{item.name}</span>
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="p-4 border-t border-gray-200 space-y-2">
             <Link
               href="/onboarding/plans"
-              className="block px-4 py-3 hover:bg-gray-50 rounded-xl transition text-sm"
+              className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-xl transition text-sm"
             >
-              📋 Change Plan
+              <FileText className="w-4 h-4" />
+              <span>Change Plan</span>
             </Link>
             <button
               onClick={handleLogout}
-              className="block w-full text-left px-4 py-3 hover:bg-red-50 rounded-xl transition text-sm text-red-600"
+              className="flex items-center gap-3 w-full text-left px-4 py-3 hover:bg-red-50 rounded-xl transition text-sm text-red-600"
             >
-              🚪 Logout
+              <LogOut className="w-4 h-4" />
+              <span>Logout</span>
             </button>
           </div>
         </div>
@@ -152,26 +170,29 @@ export default function DashboardLayout({
         <div className="p-6 flex-1">
           <Link href="/" className="flex items-center gap-2 mb-8 group">
             <div className="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center group-hover:bg-green-700 transition">
-              <span className="text-white font-bold text-xl">⚡</span>
+              <Zap className="w-6 h-6 text-white" />
             </div>
             <span className="text-xl font-bold">VOLTPAY</span>
           </Link>
 
           <nav className="space-y-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                href={item.path}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                  pathname === item.path
-                    ? "bg-green-600 text-white shadow-lg shadow-green-600/30"
-                    : "text-gray-700 hover:bg-gray-100"
-                }`}
-              >
-                <span className="text-xl">{item.icon}</span>
-                <span className="font-medium">{item.name}</span>
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.path}
+                  href={item.path}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                    pathname === item.path
+                      ? "bg-green-600 text-white shadow-lg shadow-green-600/30"
+                      : "text-gray-700 hover:bg-gray-100"
+                  }`}
+                >
+                  <Icon className="w-5 h-5" />
+                  <span className="font-medium">{item.name}</span>
+                </Link>
+              );
+            })}
           </nav>
         </div>
 
@@ -189,30 +210,33 @@ export default function DashboardLayout({
                 <div className="font-semibold text-sm">Alex Bright</div>
                 <div className="text-xs text-gray-500">Standard Plan</div>
               </div>
-              <span className="text-gray-400">⋮</span>
+              <Settings className="w-4 h-4 text-gray-400" />
             </button>
 
             {showUserMenu && (
               <div className="absolute bottom-full left-0 right-0 mb-2 bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden">
                 <Link
                   href="/dashboard/settings"
-                  className="block px-4 py-3 hover:bg-gray-50 transition text-sm"
+                  className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition text-sm"
                   onClick={() => setShowUserMenu(false)}
                 >
-                  ⚙️ Settings
+                  <Settings className="w-4 h-4" />
+                  <span>Settings</span>
                 </Link>
                 <Link
                   href="/onboarding/plans"
-                  className="block px-4 py-3 hover:bg-gray-50 transition text-sm"
+                  className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition text-sm"
                   onClick={() => setShowUserMenu(false)}
                 >
-                  📋 Change Plan
+                  <FileText className="w-4 h-4" />
+                  <span>Change Plan</span>
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="block w-full text-left px-4 py-3 hover:bg-red-50 transition text-sm text-red-600"
+                  className="flex items-center gap-3 w-full text-left px-4 py-3 hover:bg-red-50 transition text-sm text-red-600"
                 >
-                  🚪 Logout
+                  <LogOut className="w-4 h-4" />
+                  <span>Logout</span>
                 </button>
               </div>
             )}
@@ -227,17 +251,17 @@ export default function DashboardLayout({
           <div className="flex items-center justify-between">
             <div className="flex-1 max-w-xl">
               <div className="relative">
+                <Search className="absolute left-4 top-3 w-5 h-5 text-gray-400" />
                 <input
                   type="text"
                   placeholder="Search analytics or bills..."
                   className="w-full px-4 py-2.5 pl-11 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
                 />
-                <span className="absolute left-4 top-3 text-gray-400">🔍</span>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <button className="relative p-2.5 hover:bg-gray-100 rounded-xl transition">
-                <span className="text-xl">🔔</span>
+                <Bell className="w-5 h-5 text-gray-600" />
                 <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
               </button>
               <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center text-white font-bold cursor-pointer hover:shadow-lg transition">

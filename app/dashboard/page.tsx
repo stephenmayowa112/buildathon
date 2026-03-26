@@ -1,9 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { PLANS, PlanType } from "@/types";
 import { calculateBilling, formatCurrency } from "@/lib/billing";
 import Link from "next/link";
+import { 
+  DollarSign, 
+  Zap, 
+  CheckCircle, 
+  CreditCard, 
+  AlertTriangle,
+  TrendingUp,
+  ArrowRight
+} from "lucide-react";
 
 export default function DashboardPage() {
   const [selectedPlan, setSelectedPlan] = useState<PlanType>("standard");
@@ -19,7 +28,7 @@ export default function DashboardPage() {
   const paymentStatus = remainingBalance === 0 ? "paid" : isOverdue ? "overdue" : "pending";
 
   const handleMakePayment = () => {
-    router.push("/dashboard/payment");
+    setAmountPaid(billing.monthlyBill);
   };
 
   return (
@@ -56,7 +65,7 @@ export default function DashboardPage() {
         <div className="bg-green-600 text-white rounded-xl p-4 sm:p-6">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs sm:text-sm opacity-90">Monthly Bill</span>
-            <span className="text-lg sm:text-xl">💰</span>
+            <DollarSign className="w-5 h-5 opacity-90" />
           </div>
           <div className="text-2xl sm:text-3xl font-bold mb-1">{formatCurrency(billing.monthlyBill)}</div>
           <div className="text-xs sm:text-sm opacity-90">📅 Due March 31,2026</div>
@@ -65,16 +74,19 @@ export default function DashboardPage() {
         <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs sm:text-sm text-gray-600">Daily Usage</span>
-            <span className="text-lg sm:text-xl">⚡</span>
+            <Zap className="w-5 h-5 text-yellow-500" />
           </div>
           <div className="text-2xl sm:text-3xl font-bold mb-1">{dailyUsage} kWh</div>
-          <div className="text-xs sm:text-sm text-gray-600">≈ 8% vs last week</div>
+          <div className="text-xs sm:text-sm text-gray-600 flex items-center gap-1">
+            <TrendingUp className="w-3 h-3" />
+            8% vs last week
+          </div>
         </div>
 
         <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs sm:text-sm text-gray-600">Active Plan</span>
-            <span className="text-lg sm:text-xl">✅</span>
+            <CheckCircle className="w-5 h-5 text-green-600" />
           </div>
           <div className="text-2xl sm:text-3xl font-bold mb-1">{plan.name}</div>
           <div className="text-xs sm:text-sm text-gray-600">{plan.monthlyLimit} kWh/mo ≈ ₦{plan.extraRate}/extra kWh</div>
@@ -83,7 +95,10 @@ export default function DashboardPage() {
         <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs sm:text-sm text-gray-600">Payment Status</span>
-            <span className="text-lg sm:text-xl">💳</span>
+            <CreditCard className={`w-5 h-5 ${
+              paymentStatus === "paid" ? "text-green-600" : 
+              paymentStatus === "overdue" ? "text-red-600" : "text-yellow-600"
+            }`} />
           </div>
           <div className={`text-2xl sm:text-3xl font-bold mb-1 ${
             paymentStatus === "paid" ? "text-green-600" : 
@@ -101,7 +116,7 @@ export default function DashboardPage() {
       {isOverdue && (
         <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex items-start gap-3">
-            <span className="text-red-600 text-xl flex-shrink-0">⚠️</span>
+            <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
             <div>
               <div className="font-bold text-red-900 mb-1">Payment Overdue - Action Required</div>
               <div className="text-sm text-red-700">
@@ -114,7 +129,7 @@ export default function DashboardPage() {
             onClick={handleMakePayment}
             className="w-full sm:w-auto px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition flex items-center justify-center gap-2 whitespace-nowrap"
           >
-            Pay Now →
+            Pay Now <ArrowRight className="w-4 h-4" />
           </button>
         </div>
       )}
@@ -179,28 +194,31 @@ export default function DashboardPage() {
             className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition"
           >
             <div className="flex items-center gap-3">
-              <span className="text-xl">💳</span>
+              <CreditCard className="w-5 h-5 text-green-600" />
               <span className="font-medium">Make Payment</span>
             </div>
-            <span className="text-green-600">→</span>
+            <ArrowRight className="w-5 h-5 text-green-600" />
           </button>
           <Link
             href="/dashboard/energy"
             className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition"
           >
             <div className="flex items-center gap-3">
-              <span className="text-xl">⚡</span>
+              <Zap className="w-5 h-5 text-yellow-500" />
               <span className="font-medium">Stimulate Usage</span>
             </div>
-            <span className="text-green-600">→</span>
+            <ArrowRight className="w-5 h-5 text-green-600" />
           </Link>
-          <button className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+          <Link
+            href="/onboarding/plans"
+            className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition"
+          >
             <div className="flex items-center gap-3">
-              <span className="text-xl">⬆️</span>
+              <TrendingUp className="w-5 h-5 text-blue-600" />
               <span className="font-medium">Upgrade Plan</span>
             </div>
-            <span className="text-green-600">→</span>
-          </button>
+            <ArrowRight className="w-5 h-5 text-green-600" />
+          </Link>
         </div>
       </div>
 
@@ -208,7 +226,9 @@ export default function DashboardPage() {
       <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg sm:text-xl font-bold">Recent Payment</h2>
-          <button className="text-green-600 hover:text-green-700 text-sm">View All →</button>
+          <button className="text-green-600 hover:text-green-700 text-sm flex items-center gap-1">
+            View All <ArrowRight className="w-4 h-4" />
+          </button>
         </div>
         <div className="space-y-3">
           {[
@@ -224,7 +244,9 @@ export default function DashboardPage() {
               }`}
             >
               <div className="flex items-center gap-3">
-                <span className="text-xl">💳</span>
+                <CreditCard className={`w-5 h-5 ${
+                  payment.status === "Paid" ? "text-green-600" : "text-yellow-600"
+                }`} />
                 <div>
                   <div className="font-medium text-sm">{payment.id}</div>
                   <div className="text-xs text-gray-600">Date: {payment.date}</div>
