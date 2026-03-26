@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { PLANS, PlanType } from "@/types";
 import { calculateBilling, formatCurrency } from "@/lib/billing";
 import Link from "next/link";
@@ -15,6 +16,7 @@ import {
 } from "lucide-react";
 
 export default function DashboardPage() {
+  const router = useRouter();
   const [selectedPlan, setSelectedPlan] = useState<PlanType>("standard");
   const [dailyUsage, setDailyUsage] = useState(7);
   const [amountPaid, setAmountPaid] = useState(0);
