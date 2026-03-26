@@ -3,11 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { signUp } from "@/lib/auth";
 
 export default function SignUpPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     fullName: "",
     businessName: "",
@@ -22,18 +24,33 @@ export default function SignUpPage() {
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
     
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords don't match!");
+      setError("Passwords don't match!");
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      setError("Password must be at least 6 characters");
       return;
     }
 
     setIsLoading(true);
     
-    // Mock sign up with delay
-    setTimeout(() => {
+    try {
+      await signUp({
+        email: formData.email,
+        password: formData.password,
+        fullName: formData.fullName,
+        businessName: formData.businessName,
+      });
+      
       router.push("/onboarding/plans");
-    }, 1000);
+    } catch (err: any) {
+      setError(err.message || "Failed to create account");
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -54,6 +71,12 @@ export default function SignUpPage() {
           </div>
 
           <form onSubmit={handleSignUp} className="space-y-5">
+            {error && (
+              <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
+                {error}
+              </div>
+            )}
+            
             <div>
               <label className="block text-sm font-semibold mb-2 text-gray-700">Full Name</label>
               <input

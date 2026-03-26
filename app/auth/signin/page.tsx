@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { signIn } from "@/lib/auth";
 
 export default function SignInPage() {
   const router = useRouter();
@@ -10,15 +11,20 @@ export default function SignInPage() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setError("");
     
-    // Mock sign in with delay
-    setTimeout(() => {
+    try {
+      await signIn({ email, password });
       router.push("/dashboard");
-    }, 1000);
+    } catch (err: any) {
+      setError(err.message || "Invalid email or password");
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -49,6 +55,12 @@ export default function SignInPage() {
           </div>
 
           <form onSubmit={handleSignIn} className="space-y-5">
+            {error && (
+              <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
+                {error}
+              </div>
+            )}
+            
             <div>
               <label className="block text-sm font-semibold mb-2 text-gray-700">Email Address</label>
               <input
