@@ -35,56 +35,56 @@ export default function HomePage() {
         <div className="absolute top-20 right-10 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float"></div>
         <div className="absolute bottom-10 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float-delayed"></div>
         
-        <div className="inline-block mb-6 relative z-10">
-          <span className="px-4 py-2 glass-green rounded-full text-sm font-medium flex items-center gap-2 w-fit shadow-lg">
-            <Zap className="w-4 h-4" />
+        <div className="inline-block mb-6 relative z-10 animate-fadeInDown">
+          <span className="px-4 py-2 glass-green rounded-full text-sm font-medium flex items-center gap-2 w-fit shadow-lg glow-pulse">
+            <Zap className="w-4 h-4 animate-bounce-subtle" />
             Reliable Clean Energy
           </span>
         </div>
         
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-          Affordable Solar Energy For Your <span className="text-green-600">Business</span>
+        <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight animate-fadeInUp delay-100">
+          Affordable Solar Energy For Your <span className="text-gradient-animate">Business</span>
         </h1>
         
-        <p className="text-xl text-gray-600 mb-8 max-w-2xl">
+        <p className="text-xl text-gray-600 mb-8 max-w-2xl animate-fadeInUp delay-200">
           Power your business with clean, reliable solar energy through flexible subscription 
           plans. Track usage, manage billing, and reduce costs in one simple platform.
         </p>
         
-        <div className="flex gap-4 mb-12">
+        <div className="flex gap-4 mb-12 animate-fadeInUp delay-300">
           <Link 
             href="/auth/signup" 
-            className="px-8 py-4 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-xl font-semibold hover:from-green-700 hover:to-green-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            className="px-8 py-4 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-xl font-semibold hover:from-green-700 hover:to-green-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105"
           >
             Get Started →
           </Link>
           <Link 
             href="#pricing" 
-            className="px-8 py-4 glass-card rounded-xl font-semibold hover:shadow-lg transition-all transform hover:-translate-y-0.5"
+            className="px-8 py-4 glass-card rounded-xl font-semibold hover:shadow-lg transition-all transform hover:-translate-y-1"
           >
             View Pricing
           </Link>
         </div>
         
-        <div className="flex flex-wrap gap-8 sm:gap-12 text-center">
-          <div className="flex flex-col items-center">
+        <div className="flex flex-wrap gap-8 sm:gap-12 text-center animate-fadeInUp delay-400">
+          <div className="flex flex-col items-center hover-lift">
             <div className="flex items-center gap-2 mb-2">
               <Users className="w-6 h-6 text-green-600" />
-              <div className="text-3xl font-bold">500+</div>
+              <div className="text-3xl font-bold text-shimmer">500+</div>
             </div>
             <div className="text-gray-600">Active Businesses</div>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center hover-lift">
             <div className="flex items-center gap-2 mb-2">
               <TrendingUp className="w-6 h-6 text-green-600" />
-              <div className="text-3xl font-bold">40%</div>
+              <div className="text-3xl font-bold text-shimmer">40%</div>
             </div>
             <div className="text-gray-600">Average Savings</div>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center hover-lift">
             <div className="flex items-center gap-2 mb-2">
               <Clock className="w-6 h-6 text-green-600" />
-              <div className="text-3xl font-bold">24/7</div>
+              <div className="text-3xl font-bold text-shimmer">24/7</div>
             </div>
             <div className="text-gray-600">Support</div>
           </div>
@@ -93,7 +93,7 @@ export default function HomePage() {
 
       {/* Image Placeholder */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="glass-card rounded-2xl h-96 relative overflow-hidden shadow-2xl">
+        <div className="glass-card rounded-2xl h-96 relative overflow-hidden shadow-2xl animate-scaleIn delay-500 hover-lift">
           <Image 
             src="/images/solar-placeholder.png" 
             alt="Business building powered by solar panels"
@@ -102,10 +102,10 @@ export default function HomePage() {
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-          <div className="absolute bottom-6 left-6">
+          <div className="absolute bottom-6 left-6 animate-fadeInLeft delay-700">
             <div className="glass-dark text-white px-6 py-3 rounded-xl font-medium backdrop-blur-md shadow-lg">
               Monthly Savings<br />
-              <span className="text-2xl font-bold">₦50,000</span>
+              <span className="text-2xl font-bold text-shimmer">₦50,000</span>
             </div>
           </div>
         </div>
@@ -156,16 +156,16 @@ export default function HomePage() {
       {/* How It Works */}
       <section id="how-it-works" className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-4">
-            How VOLTPAY works
+          <h2 className="text-4xl font-bold text-center mb-4 animate-fadeInUp">
+            How <span className="text-gradient-animate">VOLTPAY</span> works
           </h2>
-          <p className="text-center text-gray-600 mb-12">
+          <p className="text-center text-gray-600 mb-12 animate-fadeInUp delay-100">
             Get started with solar energy in 3 easy steps
           </p>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+            <div className="text-center animate-fadeInUp delay-200">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-green-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg glow-pulse">
                 1
               </div>
               <h3 className="text-xl font-bold mb-2">Choose Simple Plan</h3>
@@ -174,8 +174,8 @@ export default function HomePage() {
               </p>
             </div>
             
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+            <div className="text-center animate-fadeInUp delay-300">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-green-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg glow-pulse" style={{ animationDelay: '0.5s' }}>
                 2
               </div>
               <h3 className="text-xl font-bold mb-2">Track Your Usage</h3>
@@ -184,8 +184,8 @@ export default function HomePage() {
               </p>
             </div>
             
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+            <div className="text-center animate-fadeInUp delay-400">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-green-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg glow-pulse" style={{ animationDelay: '1s' }}>
                 3
               </div>
               <h3 className="text-xl font-bold mb-2">Pay Monthly</h3>
@@ -199,10 +199,10 @@ export default function HomePage() {
 
       {/* Pricing Section */}
       <section id="pricing" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-4xl font-bold text-center mb-4">
-          Simple Transparent Pricing
+        <h2 className="text-4xl font-bold text-center mb-4 animate-fadeInUp">
+          Simple <span className="text-gradient-animate">Transparent</span> Pricing
         </h2>
-        <p className="text-center text-gray-600 mb-12">
+        <p className="text-center text-gray-600 mb-12 animate-fadeInUp delay-100">
           Choose the plan that fits your business needs
         </p>
         
@@ -233,7 +233,7 @@ export default function HomePage() {
         
         <div className="grid md:grid-cols-3 gap-8">
           {/* Basic Plan */}
-          <div className="glass-card rounded-2xl p-8 hover:shadow-2xl transition-all transform hover:-translate-y-1">
+          <div className="glass-card rounded-2xl p-8 hover:shadow-2xl transition-all transform hover:-translate-y-2 animate-fadeInUp delay-200 hover-lift">
             <h3 className="text-2xl font-bold mb-2">Basic</h3>
             <p className="text-gray-600 mb-6">Perfect for small shops</p>
             <div className="mb-6">
@@ -277,8 +277,8 @@ export default function HomePage() {
           </div>
 
           {/* Standard Plan */}
-          <div className="glass-card border-2 border-green-600 rounded-2xl p-8 relative hover:shadow-2xl transition-all transform hover:scale-105">
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-green-600 to-green-500 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg">
+          <div className="glass-card border-2 border-green-600 rounded-2xl p-8 relative hover:shadow-2xl transition-all transform hover:scale-105 animate-fadeInUp delay-300 hover-lift">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-green-600 to-green-500 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg animate-bounce-subtle">
               Most Popular
             </div>
             <h3 className="text-2xl font-bold mb-2">Standard</h3>
@@ -328,7 +328,7 @@ export default function HomePage() {
           </div>
 
           {/* Premium Plan */}
-          <div className="glass-card rounded-2xl p-8 hover:shadow-2xl transition-all transform hover:-translate-y-1">
+          <div className="glass-card rounded-2xl p-8 hover:shadow-2xl transition-all transform hover:-translate-y-2 animate-fadeInUp delay-400 hover-lift">
             <h3 className="text-2xl font-bold mb-2">Premium</h3>
             <p className="text-gray-600 mb-6">For large operations</p>
             <div className="mb-6">
