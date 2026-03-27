@@ -13,9 +13,9 @@ export default function EnergyPage() {
   const usagePercentage = (billing.monthlyUsage / plan.monthlyLimit) * 100;
 
   return (
-    <div>
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold mb-2">Energy Simulator</h1>
+    <div className="animate-fadeInUp">
+      <div className="mb-6 animate-fadeInDown">
+        <h1 className="text-3xl font-bold mb-2">Energy <span className="text-gradient-animate">Simulator</span></h1>
         <p className="text-gray-600">
           Adjust your expected daily solar consumption to forecast your monthly billing
           and optimize your energy usage patterns.
@@ -24,36 +24,36 @@ export default function EnergyPage() {
 
       {/* Top Stats */}
       <div className="grid grid-cols-4 gap-6 mb-6">
-        <div className="glass-card rounded-xl p-6 hover:shadow-lg transition-all">
+        <div className="glass-card rounded-xl p-6 hover:shadow-lg transition-all animate-fadeInUp delay-100 hover-lift">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Daily Energy Usage</span>
-            <span className="text-xl">⚡</span>
+            <span className="text-xl animate-bounce-subtle">⚡</span>
           </div>
-          <div className="text-3xl font-bold mb-1">{dailyUsage} kWh</div>
+          <div className="text-3xl font-bold mb-1 text-shimmer">{dailyUsage} kWh</div>
           <div className="text-sm text-red-600">12% ↑</div>
         </div>
 
-        <div className="glass-card rounded-xl p-6 hover:shadow-lg transition-all">
+        <div className="glass-card rounded-xl p-6 hover:shadow-lg transition-all animate-fadeInUp delay-200 hover-lift">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Monthly Usage</span>
-            <span className="text-xl">📊</span>
+            <span className="text-xl animate-bounce-subtle" style={{ animationDelay: '0.2s' }}>📊</span>
           </div>
-          <div className="text-3xl font-bold mb-1">{billing.monthlyUsage.toFixed(0)} kWh</div>
+          <div className="text-3xl font-bold mb-1 text-shimmer">{billing.monthlyUsage.toFixed(0)} kWh</div>
           <div className="text-sm text-gray-600">4% ↑</div>
         </div>
 
-        <div className="glass-card rounded-xl p-6 hover:shadow-lg transition-all">
+        <div className="glass-card rounded-xl p-6 hover:shadow-lg transition-all animate-fadeInUp delay-300 hover-lift">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Current Bill</span>
-            <span className="text-xl">💰</span>
+            <span className="text-xl animate-bounce-subtle" style={{ animationDelay: '0.4s' }}>💰</span>
           </div>
-          <div className="text-3xl font-bold mb-1">{formatCurrency(billing.monthlyBill)}</div>
+          <div className="text-3xl font-bold mb-1 text-shimmer">{formatCurrency(billing.monthlyBill)}</div>
         </div>
 
-        <div className="glass-card rounded-xl p-6 hover:shadow-lg transition-all">
+        <div className="glass-card rounded-xl p-6 hover:shadow-lg transition-all animate-fadeInUp delay-400 hover-lift">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Next Payment</span>
-            <span className="text-xl">📅</span>
+            <span className="text-xl animate-bounce-subtle" style={{ animationDelay: '0.6s' }}>📅</span>
           </div>
           <div className="text-3xl font-bold mb-1">Feb12</div>
           <div className="text-sm text-green-600 font-medium">Paid</div>

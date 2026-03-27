@@ -36,17 +36,17 @@ export default function Footer() {
           <div className="animate-fadeInUp delay-200">
             <h3 className="font-bold mb-4">Company</h3>
             <ul className="space-y-2 text-green-50/80">
-              <li><Link href="#" className="hover:text-white transition-all hover:translate-x-1 inline-block">About Us</Link></li>
-              <li><Link href="#" className="hover:text-white transition-all hover:translate-x-1 inline-block">Careers</Link></li>
-              <li><Link href="#" className="hover:text-white transition-all hover:translate-x-1 inline-block">Contact</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-all hover:translate-x-1 inline-block">About Us</Link></li>
+              <li><Link href="/careers" className="hover:text-white transition-all hover:translate-x-1 inline-block">Careers</Link></li>
+              <li><Link href="/contact" className="hover:text-white transition-all hover:translate-x-1 inline-block">Contact</Link></li>
             </ul>
           </div>
           
           <div className="animate-fadeInUp delay-300">
             <h3 className="font-bold mb-4">Legal</h3>
             <ul className="space-y-2 text-green-50/80">
-              <li><Link href="#" className="hover:text-white transition-all hover:translate-x-1 inline-block">Privacy policy</Link></li>
-              <li><Link href="#" className="hover:text-white transition-all hover:translate-x-1 inline-block">Terms of Service</Link></li>
+              <li><Link href="/privacy" className="hover:text-white transition-all hover:translate-x-1 inline-block">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="hover:text-white transition-all hover:translate-x-1 inline-block">Terms of Service</Link></li>
             </ul>
           </div>
         </div>

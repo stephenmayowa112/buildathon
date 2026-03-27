@@ -126,33 +126,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team */}
-      <section className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-4 animate-fadeInUp">
-            Meet Our <span className="text-gradient-animate">Leadership</span>
-          </h2>
-          <p className="text-center text-gray-600 mb-12 animate-fadeInUp delay-100">
-            A passionate team driving the clean energy revolution
-          </p>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { name: "Adebayo Ogunlade", role: "CEO & Founder", initials: "AO" },
-              { name: "Chioma Nwosu", role: "CTO", initials: "CN" },
-              { name: "Emeka Afolabi", role: "COO", initials: "EA" },
-            ].map((member, idx) => (
-              <div key={idx} className="bg-white p-8 rounded-2xl shadow-sm text-center hover-lift animate-fadeInUp" style={{ animationDelay: `${0.2 + idx * 0.1}s` }}>
-                <div className="w-20 h-20 bg-gradient-to-br from-green-600 to-green-500 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4 shadow-lg">
-                  {member.initials}
-                </div>
-                <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-                <p className="text-green-600 font-medium">{member.role}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <Footer />
     </div>
   );

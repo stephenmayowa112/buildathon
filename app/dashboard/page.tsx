@@ -34,17 +34,17 @@ export default function DashboardPage() {
   };
 
   return (
-    <div>
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold">Dashboard</h1>
+    <div className="animate-fadeInUp">
+      <div className="mb-6 animate-fadeInDown">
+        <h1 className="text-2xl font-bold text-gradient-animate">Dashboard</h1>
         <p className="text-gray-600">Thursday, March 5, 2026</p>
       </div>
 
       {/* Overdue Alert */}
       {isOverdue && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 flex items-center justify-between">
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 flex items-center justify-between animate-fadeInDown glow-pulse">
           <div className="flex items-center gap-3">
-            <span className="text-red-600 text-xl">⚠️</span>
+            <span className="text-red-600 text-xl animate-bounce-subtle">⚠️</span>
             <div>
               <div className="font-bold text-red-900">Payment Overdue - Action Required</div>
               <div className="text-sm text-red-700">
@@ -55,7 +55,7 @@ export default function DashboardPage() {
           </div>
           <button
             onClick={handleMakePayment}
-            className="px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition flex items-center gap-2"
+            className="px-4 py-2 bg-gradient-to-r from-red-600 to-red-500 text-white rounded-lg font-medium hover:from-red-700 hover:to-red-600 transition-all flex items-center gap-2 transform hover:scale-105 shadow-lg hover:shadow-xl"
           >
             Pay Now →
           </button>
@@ -64,19 +64,19 @@ export default function DashboardPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6">
-        <div className="bg-gradient-to-br from-green-600 to-green-700 text-white rounded-xl p-4 sm:p-6 glass-dark shadow-lg">
+        <div className="bg-gradient-to-br from-green-600 to-green-700 text-white rounded-xl p-4 sm:p-6 glass-dark shadow-lg animate-fadeInUp delay-100 hover-lift glow-pulse">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs sm:text-sm opacity-90">Monthly Bill</span>
-            <DollarSign className="w-5 h-5 opacity-90" />
+            <DollarSign className="w-5 h-5 opacity-90 animate-bounce-subtle" />
           </div>
-          <div className="text-2xl sm:text-3xl font-bold mb-1">{formatCurrency(billing.monthlyBill)}</div>
+          <div className="text-2xl sm:text-3xl font-bold mb-1 text-shimmer">{formatCurrency(billing.monthlyBill)}</div>
           <div className="text-xs sm:text-sm opacity-90">📅 Due March 31,2026</div>
         </div>
 
-        <div className="glass-card rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all">
+        <div className="glass-card rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all animate-fadeInUp delay-200 hover-lift">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs sm:text-sm text-gray-600">Daily Usage</span>
-            <Zap className="w-5 h-5 text-yellow-500" />
+            <Zap className="w-5 h-5 text-yellow-500 animate-bounce-subtle" />
           </div>
           <div className="text-2xl sm:text-3xl font-bold mb-1">{dailyUsage} kWh</div>
           <div className="text-xs sm:text-sm text-gray-600 flex items-center gap-1">
@@ -85,19 +85,19 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="glass-card rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all">
+        <div className="glass-card rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all animate-fadeInUp delay-300 hover-lift">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs sm:text-sm text-gray-600">Active Plan</span>
-            <CheckCircle className="w-5 h-5 text-green-600" />
+            <CheckCircle className="w-5 h-5 text-green-600 animate-bounce-subtle" />
           </div>
           <div className="text-2xl sm:text-3xl font-bold mb-1">{plan.name}</div>
           <div className="text-xs sm:text-sm text-gray-600">{plan.monthlyLimit} kWh/mo ≈ ₦{plan.extraRate}/extra kWh</div>
         </div>
 
-        <div className="glass-card rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all">
+        <div className="glass-card rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all animate-fadeInUp delay-400 hover-lift">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs sm:text-sm text-gray-600">Payment Status</span>
-            <CreditCard className={`w-5 h-5 ${
+            <CreditCard className={`w-5 h-5 animate-bounce-subtle ${
               paymentStatus === "paid" ? "text-green-600" : 
               paymentStatus === "overdue" ? "text-red-600" : "text-yellow-600"
             }`} />
