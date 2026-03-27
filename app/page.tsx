@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
@@ -5,6 +8,23 @@ import Footer from "@/components/Footer";
 import { Zap, CheckCircle, TrendingUp, DollarSign, Clock, Users } from "lucide-react";
 
 export default function HomePage() {
+  const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("monthly");
+
+  const calculatePrice = (monthlyPrice: number) => {
+    if (billingPeriod === "yearly") {
+      const yearlyPrice = monthlyPrice * 12 * 0.8; // 20% discount
+      return Math.round(yearlyPrice / 12); // Show monthly equivalent
+    }
+    return monthlyPrice;
+  };
+
+  const getOriginalPrice = (monthlyPrice: number) => {
+    if (billingPeriod === "yearly") {
+      return monthlyPrice;
+    }
+    return null;
+  };
+
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -183,8 +203,26 @@ export default function HomePage() {
         
         <div className="flex justify-center mb-8">
           <div className="inline-flex items-center gap-2 bg-gray-100 p-1 rounded-lg">
-            <button className="px-4 py-2 bg-white rounded-md font-medium shadow-sm">Monthly</button>
-            <button className="px-4 py-2 text-gray-600">Yearly (Save 20%)</button>
+            <button 
+              onClick={() => setBillingPeriod("monthly")}
+              className={`px-4 py-2 rounded-md font-medium transition ${
+                billingPeriod === "monthly" 
+                  ? "bg-white shadow-sm" 
+                  : "text-gray-600 hover:text-gray-900"
+              }`}
+            >
+              Monthly
+            </button>
+            <button 
+              onClick={() => setBillingPeriod("yearly")}
+              className={`px-4 py-2 rounded-md font-medium transition ${
+                billingPeriod === "yearly" 
+                  ? "bg-white shadow-sm" 
+                  : "text-gray-600 hover:text-gray-900"
+              }`}
+            >
+              Yearly (Save 20%)
+            </button>
           </div>
         </div>
         
@@ -194,8 +232,18 @@ export default function HomePage() {
             <h3 className="text-2xl font-bold mb-2">Basic</h3>
             <p className="text-gray-600 mb-6">Perfect for small shops</p>
             <div className="mb-6">
-              <span className="text-4xl font-bold">₦15,000</span>
+              {billingPeriod === "yearly" && (
+                <div className="text-sm text-gray-500 line-through mb-1">
+                  ₦{getOriginalPrice(15000)?.toLocaleString()}/month
+                </div>
+              )}
+              <span className="text-4xl font-bold">₦{calculatePrice(15000).toLocaleString()}</span>
               <span className="text-gray-600">/month</span>
+              {billingPeriod === "yearly" && (
+                <div className="text-sm text-green-600 font-medium mt-1">
+                  Billed ₦{(calculatePrice(15000) * 12).toLocaleString()}/year
+                </div>
+              )}
             </div>
             <Link 
               href="/auth/signup?plan=basic" 
@@ -231,8 +279,18 @@ export default function HomePage() {
             <h3 className="text-2xl font-bold mb-2">Standard</h3>
             <p className="text-gray-600 mb-6">For growing businesses</p>
             <div className="mb-6">
-              <span className="text-4xl font-bold">₦25,000</span>
+              {billingPeriod === "yearly" && (
+                <div className="text-sm text-gray-500 line-through mb-1">
+                  ₦{getOriginalPrice(25000)?.toLocaleString()}/month
+                </div>
+              )}
+              <span className="text-4xl font-bold">₦{calculatePrice(25000).toLocaleString()}</span>
               <span className="text-gray-600">/month</span>
+              {billingPeriod === "yearly" && (
+                <div className="text-sm text-green-600 font-medium mt-1">
+                  Billed ₦{(calculatePrice(25000) * 12).toLocaleString()}/year
+                </div>
+              )}
             </div>
             <Link 
               href="/auth/signup?plan=standard" 
@@ -269,8 +327,18 @@ export default function HomePage() {
             <h3 className="text-2xl font-bold mb-2">Premium</h3>
             <p className="text-gray-600 mb-6">For large operations</p>
             <div className="mb-6">
-              <span className="text-4xl font-bold">₦45,000</span>
+              {billingPeriod === "yearly" && (
+                <div className="text-sm text-gray-500 line-through mb-1">
+                  ₦{getOriginalPrice(45000)?.toLocaleString()}/month
+                </div>
+              )}
+              <span className="text-4xl font-bold">₦{calculatePrice(45000).toLocaleString()}</span>
               <span className="text-gray-600">/month</span>
+              {billingPeriod === "yearly" && (
+                <div className="text-sm text-green-600 font-medium mt-1">
+                  Billed ₦{(calculatePrice(45000) * 12).toLocaleString()}/year
+                </div>
+              )}
             </div>
             <Link 
               href="/auth/signup?plan=premium" 

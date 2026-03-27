@@ -45,7 +45,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-green-500 mt-8 pt-8 text-center text-green-100">
-          © 2025 VOLTPAY. All rights reserved.
+          © 2026 VOLTPAY. All rights reserved.
         </div>
       </div>
     </footer>
