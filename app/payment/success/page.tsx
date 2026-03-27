@@ -29,6 +29,14 @@ function PaymentSuccessContent() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-white flex items-center justify-center px-4">
       <div className="max-w-md w-full">
+        {/* Logo */}
+        <Link href="/" className="flex items-center justify-center gap-2 mb-8 group">
+          <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center group-hover:bg-green-700 transition">
+            <span className="text-white font-bold text-2xl">⚡</span>
+          </div>
+          <span className="text-3xl font-bold">VOLTPAY</span>
+        </Link>
+
         <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 text-center">
           {/* Success Icon */}
           <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -89,6 +97,9 @@ function PaymentSuccessContent() {
         {/* Support */}
         <div className="mt-6 text-center text-sm text-gray-600">
           <p>Need help? Contact support at support@voltpay.com</p>
+          <Link href="/" className="inline-block mt-3 text-green-600 font-medium hover:text-green-700 transition">
+            ← Back to Homepage
+          </Link>
         </div>
       </div>
     </div>

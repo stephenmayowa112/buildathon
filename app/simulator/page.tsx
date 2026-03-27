@@ -46,12 +46,12 @@ export default function SimulatorPage() {
       {/* Header */}
       <header className="bg-white border-b border-gray-200 px-8 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center">
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center group-hover:bg-green-700 transition">
               <span className="text-white font-bold">⚡</span>
             </div>
             <span className="text-xl font-bold">VOLTPAY</span>
-          </div>
+          </Link>
           <div className="flex items-center gap-8">
             <Link href="/dashboard" className="text-gray-700 hover:text-gray-900">Dashboard</Link>
             <Link href="/dashboard/billing" className="text-gray-700 hover:text-gray-900">History</Link>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { PLANS } from "@/types";
 import { formatCurrency } from "@/lib/billing";
 
@@ -16,9 +17,17 @@ export default function PlansPage() {
       {/* Header */}
       <header className="bg-white border-b border-gray-200 px-8 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div>
-            <div className="text-sm text-gray-600">Plans</div>
-            <div className="text-sm text-gray-500">Thursday, March 5, 2026</div>
+          <div className="flex items-center gap-6">
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="w-9 h-9 bg-green-600 rounded-lg flex items-center justify-center group-hover:bg-green-700 transition">
+                <span className="text-white font-bold">⚡</span>
+              </div>
+              <span className="text-xl font-bold">VOLTPAY</span>
+            </Link>
+            <div>
+              <div className="text-sm text-gray-600">Plans</div>
+              <div className="text-sm text-gray-500">Thursday, March 5, 2026</div>
+            </div>
           </div>
           <div className="flex items-center gap-4">
             <button className="relative p-2 hover:bg-gray-100 rounded-lg">
