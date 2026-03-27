@@ -29,9 +29,9 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-white flex items-center justify-center px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-white flex items-center justify-center px-4 py-8 sm:py-12 relative overflow-hidden">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMmMzNWUiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDE2YzAtMi4yMSAxLjc5LTQgNC00czQgMS43OSA0IDQtMS43OSA0LTQgNC00LTEuNzktNC00em0wIDI0YzAtMi4yMSAxLjc5LTQgNC00czQgMS43OSA0IDQtMS43OSA0LTQgNC00LTEuNzktNC00ek0xMiAxNmMwLTIuMjEgMS43OS00IDQtNHM0IDEuNzkgNCA0LTEuNzkgNC00IDQtNC0xLjc5LTQtNHptMCAyNGMwLTIuMjEgMS43OS00IDQtNHM0IDEuNzkgNCA0LTEuNzkgNC00IDQtNC0xLjc5LTQtNHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-40"></div>
-      <div className="w-full max-w-md relative z-10">
+      <div className="w-full max-w-md relative z-10 mt-4 sm:mt-0">
         {/* Logo */}
         <Link href="/" className="flex items-center justify-center gap-2 mb-8 group">
           <div className="w-9 h-9 bg-green-600 rounded-lg flex items-center justify-center group-hover:bg-green-700 transition">
@@ -40,18 +40,18 @@ export default function SignInPage() {
           <span className="text-2xl font-bold">VOLTPAY</span>
         </Link>
 
-        <div className="clay-card rounded-2xl shadow-2xl p-8 border border-white/30 animate-scaleIn">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-2">Welcome Back</h2>
-            <p className="text-gray-600">Sign in to manage solar energy subscription</p>
+        <div className="clay-card rounded-2xl shadow-2xl p-6 sm:p-8 border border-white/30 animate-scaleIn">
+          <div className="text-center mb-6 sm:mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-2">Welcome Back</h2>
+            <p className="text-sm sm:text-base text-gray-600">Sign in to manage solar energy subscription</p>
           </div>
 
           {/* Tab Switcher */}
-          <div className="flex gap-2 mb-8 clay-pressed p-1 rounded-xl">
-            <div className="flex-1 py-3 clay-card rounded-lg text-center font-semibold shadow-sm">
+          <div className="flex gap-2 mb-6 sm:mb-8 clay-pressed p-1 rounded-xl">
+            <div className="flex-1 py-2.5 sm:py-3 clay-card rounded-lg text-center font-semibold shadow-sm text-sm sm:text-base">
               Sign in
             </div>
-            <Link href="/auth/signup" className="flex-1 py-3 text-center text-gray-600 hover:text-gray-900 transition rounded-lg hover:bg-white/50">
+            <Link href="/auth/signup" className="flex-1 py-2.5 sm:py-3 text-center text-gray-600 hover:text-gray-900 transition rounded-lg hover:bg-white/50 text-sm sm:text-base">
               Create Account
             </Link>
           </div>

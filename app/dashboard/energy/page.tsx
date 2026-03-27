@@ -15,15 +15,15 @@ export default function EnergyPage() {
   return (
     <div className="animate-fadeInUp">
       <div className="mb-6 animate-fadeInDown">
-        <h1 className="text-3xl font-bold mb-2">Energy <span className="text-gradient-animate">Simulator</span></h1>
-        <p className="text-gray-600">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-2">Energy <span className="text-gradient-animate">Simulator</span></h1>
+        <p className="text-sm sm:text-base text-gray-600">
           Adjust your expected daily solar consumption to forecast your monthly billing
           and optimize your energy usage patterns.
         </p>
       </div>
 
       {/* Top Stats */}
-      <div className="grid grid-cols-4 gap-6 mb-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6">
         <div className="glass-card rounded-xl p-6 hover:shadow-lg transition-all animate-fadeInUp delay-100 hover-lift">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Daily Energy Usage</span>
@@ -62,140 +62,142 @@ export default function EnergyPage() {
 
       <div className="grid grid-cols-3 gap-6">
         {/* Left Column - Charts */}
-        <div className="col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-6">
           {/* Energy Usage Trend */}
-          <div className="glass-card rounded-xl p-6 animate-fadeInUp delay-500 hover-lift">
-            <div className="flex items-center justify-between mb-4">
+          <div className="glass-card rounded-xl p-4 sm:p-6 animate-fadeInUp delay-500 hover-lift">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
               <div>
-                <h2 className="text-xl font-bold">Energy Usage Trend</h2>
-                <p className="text-sm text-gray-600">Daily consumption over the last 7 days</p>
+                <h2 className="text-lg sm:text-xl font-bold">Energy Usage Trend</h2>
+                <p className="text-xs sm:text-sm text-gray-600">Daily consumption over the last 7 days</p>
               </div>
-              <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium animate-bounce-subtle">
+              <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs sm:text-sm font-medium animate-bounce-subtle w-fit">
                 Real time Data
               </span>
             </div>
-            <div className="h-64 bg-gradient-to-b from-green-50 to-white rounded-lg flex items-center justify-center text-gray-400 border border-gray-100">
+            <div className="h-48 sm:h-64 bg-gradient-to-b from-green-50 to-white rounded-lg flex items-center justify-center text-gray-400 border border-gray-100 text-sm">
               Usage Trend Chart (7 days)
             </div>
           </div>
 
           {/* Bottom Cards */}
-          <div className="grid grid-cols-3 gap-4">
-            <div className="glass-card rounded-xl p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="glass-card rounded-xl p-4 sm:p-6">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-gray-600">Payment Status</span>
-                <span className="text-xl">💳</span>
+                <span className="text-xs sm:text-sm text-gray-600">Payment Status</span>
+                <span className="text-lg sm:text-xl">💳</span>
               </div>
-              <div className="text-2xl font-bold mb-1">Cleared</div>
-              <button className="text-sm text-green-600 hover:underline">
+              <div className="text-lg sm:text-2xl font-bold mb-1">Cleared</div>
+              <button className="text-xs sm:text-sm text-green-600 hover:underline">
                 View Transaction History
               </button>
             </div>
 
-            <div className="glass-card rounded-xl p-6">
+            <div className="glass-card rounded-xl p-4 sm:p-6">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-gray-600">Forecasted Usage</span>
-                <span className="text-xl">📈</span>
+                <span className="text-xs sm:text-sm text-gray-600">Forecasted Usage</span>
+                <span className="text-lg sm:text-xl">📈</span>
               </div>
-              <div className="text-2xl font-bold mb-1">1,150 kWh</div>
-              <div className="text-sm text-gray-600">Est. Total</div>
+              <div className="text-lg sm:text-2xl font-bold mb-1">1,150 kWh</div>
+              <div className="text-xs sm:text-sm text-gray-600">Est. Total</div>
               <p className="text-xs text-gray-500 mt-2">
                 Based on current trends, you are likely to exceed your plan limit by 450 kWh.
               </p>
             </div>
 
-            <div className="glass-card rounded-xl p-6">
+            <div className="glass-card rounded-xl p-4 sm:p-6">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-gray-600">Active Alerts</span>
-                <span className="text-xl">🔔</span>
+                <span className="text-xs sm:text-sm text-gray-600">Active Alerts</span>
+                <span className="text-lg sm:text-xl">🔔</span>
               </div>
-              <div className="text-2xl font-bold mb-1">2 Notifications</div>
-              <button className="text-sm text-green-600 hover:underline">
+              <div className="text-lg sm:text-2xl font-bold mb-1">2 Notifications</div>
+              <button className="text-xs sm:text-sm text-green-600 hover:underline">
                 Review Alerts
               </button>
             </div>
           </div>
 
           {/* Recent Usage Logs */}
-          <div className="glass-card rounded-xl p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold">Recent Usage Logs</h2>
-              <button className="text-green-600 hover:text-green-700 text-sm font-medium">
+          <div className="glass-card rounded-xl p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+              <h2 className="text-lg sm:text-xl font-bold">Recent Usage Logs</h2>
+              <button className="text-green-600 hover:text-green-700 text-xs sm:text-sm font-medium w-fit">
                 Export Report
               </button>
             </div>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="bg-green-50 text-left">
-                    <th className="px-4 py-3 text-sm font-medium text-gray-700">DATE</th>
-                    <th className="px-4 py-3 text-sm font-medium text-gray-700">PEAK USAGE</th>
-                    <th className="px-4 py-3 text-sm font-medium text-gray-700">OFF PEAK</th>
-                    <th className="px-4 py-3 text-sm font-medium text-gray-700">TOTAL DAILY</th>
-                    <th className="px-4 py-3 text-sm font-medium text-gray-700">STATUS</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  <tr>
-                    <td className="px-4 py-3 text-sm">Mar 17, 2026</td>
-                    <td className="px-4 py-3 text-sm font-medium">32 kWh</td>
-                    <td className="px-4 py-3 text-sm">20kWh</td>
-                    <td className="px-4 py-3 text-sm font-bold">52 kWh</td>
-                    <td className="px-4 py-3">
-                      <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">
-                        Stable
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3 text-sm">Mar 20, 2026</td>
-                    <td className="px-4 py-3 text-sm font-medium">28 kWh</td>
-                    <td className="px-4 py-3 text-sm">18kWh</td>
-                    <td className="px-4 py-3 text-sm font-bold">45 kWh</td>
-                    <td className="px-4 py-3">
-                      <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">
-                        Stable
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3 text-sm">Mar 25, 2026</td>
-                    <td className="px-4 py-3 text-sm font-medium">45 kWh</td>
-                    <td className="px-4 py-3 text-sm">25kWh</td>
-                    <td className="px-4 py-3 text-sm font-bold">70 kWh</td>
-                    <td className="px-4 py-3">
-                      <span className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs">
-                        High
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3 text-sm">Apr 2, 2026</td>
-                    <td className="px-4 py-3 text-sm font-medium">30 kWh</td>
-                    <td className="px-4 py-3 text-sm">22kWh</td>
-                    <td className="px-4 py-3 text-sm font-bold">52 kWh</td>
-                    <td className="px-4 py-3">
-                      <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">
-                        Stable
-                      </span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div className="overflow-x-auto -mx-4 sm:mx-0">
+              <div className="inline-block min-w-full align-middle">
+                <table className="w-full">
+                  <thead>
+                    <tr className="bg-green-50 text-left">
+                      <th className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-gray-700">DATE</th>
+                      <th className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-gray-700">PEAK USAGE</th>
+                      <th className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-gray-700">OFF PEAK</th>
+                      <th className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-gray-700">TOTAL DAILY</th>
+                      <th className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-gray-700">STATUS</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    <tr>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm whitespace-nowrap">Mar 17, 2026</td>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium">32 kWh</td>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm">20kWh</td>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-bold">52 kWh</td>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3">
+                        <span className="px-2 sm:px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">
+                          Stable
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm whitespace-nowrap">Mar 20, 2026</td>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium">28 kWh</td>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm">18kWh</td>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-bold">45 kWh</td>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3">
+                        <span className="px-2 sm:px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">
+                          Stable
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm whitespace-nowrap">Mar 25, 2026</td>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium">45 kWh</td>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm">25kWh</td>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-bold">70 kWh</td>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3">
+                        <span className="px-2 sm:px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs">
+                          High
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm whitespace-nowrap">Apr 2, 2026</td>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium">30 kWh</td>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm">22kWh</td>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-bold">52 kWh</td>
+                      <td className="px-3 sm:px-4 py-2 sm:py-3">
+                        <span className="px-2 sm:px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">
+                          Stable
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Right Column - Plan Card */}
-        <div>
-          <div className="glass-card rounded-xl p-6 border-2 border-green-600 sticky top-6">
+        <div className="lg:sticky lg:top-6 lg:self-start">
+          <div className="glass-card rounded-xl p-4 sm:p-6 border-2 border-green-600">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold">{plan.name} Plan</h3>
-              <span className="px-3 py-1 bg-green-600 text-white rounded-full text-xs font-medium">
+              <h3 className="text-lg sm:text-xl font-bold">{plan.name} Plan</h3>
+              <span className="px-2 sm:px-3 py-1 bg-green-600 text-white rounded-full text-xs font-medium">
                 Active
               </span>
             </div>
-            <p className="text-sm text-gray-600 mb-4">Renewing on Feb 01, 2026</p>
+            <p className="text-xs sm:text-sm text-gray-600 mb-4">Renewing on Feb 01, 2026</p>
 
             {/* Usage Progress */}
             <div className="mb-6">
