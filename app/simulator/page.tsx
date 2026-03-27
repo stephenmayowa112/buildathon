@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { PLANS, PlanType } from "@/types";
 import { calculateBilling, formatCurrency, validateDailyUsage } from "@/lib/billing";
+import { Zap } from "lucide-react";
 
 export default function SimulatorPage() {
   const [dailyUsage, setDailyUsage] = useState("45");
@@ -47,10 +48,10 @@ export default function SimulatorPage() {
       <header className="bg-white border-b border-gray-200 px-8 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center group-hover:bg-green-700 transition">
-              <span className="text-white font-bold">⚡</span>
+            <div className="w-9 h-9 bg-green-600 rounded-lg flex items-center justify-center group-hover:bg-green-700 transition">
+              <Zap className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold">VOLTPAY</span>
+            <span className="text-2xl font-bold">VOLTPAY</span>
           </Link>
           <div className="flex items-center gap-8">
             <Link href="/dashboard" className="text-gray-700 hover:text-gray-900">Dashboard</Link>

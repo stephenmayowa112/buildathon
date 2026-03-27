@@ -79,6 +79,11 @@
   .animate-float {
     animation: float 3s ease-in-out infinite;
   }
+
+  .animate-float-delayed {
+    animation: float 3s ease-in-out infinite;
+    animation-delay: 2s;
+  }
 }
 
 /* Custom scrollbar */

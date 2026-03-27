@@ -3,6 +3,7 @@
 import { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import { Zap } from "lucide-react";
 
 function PaymentSuccessContent() {
   const searchParams = useSearchParams();
@@ -31,10 +32,10 @@ function PaymentSuccessContent() {
       <div className="max-w-md w-full">
         {/* Logo */}
         <Link href="/" className="flex items-center justify-center gap-2 mb-8 group">
-          <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center group-hover:bg-green-700 transition">
-            <span className="text-white font-bold text-2xl">⚡</span>
+          <div className="w-9 h-9 bg-green-600 rounded-lg flex items-center justify-center group-hover:bg-green-700 transition">
+            <Zap className="w-5 h-5 text-white" />
           </div>
-          <span className="text-3xl font-bold">VOLTPAY</span>
+          <span className="text-2xl font-bold">VOLTPAY</span>
         </Link>
 
         <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 text-center">

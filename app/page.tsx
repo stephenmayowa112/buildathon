@@ -30,11 +30,13 @@ export default function HomePage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-white to-blue-50 -z-10"></div>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-blue-50 to-white -z-10"></div>
+        <div className="absolute top-20 right-10 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float"></div>
+        <div className="absolute bottom-10 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
         
-        <div className="inline-block mb-6">
-          <span className="px-4 py-2 glass-green rounded-full text-sm font-medium flex items-center gap-2 w-fit">
+        <div className="inline-block mb-6 relative z-10">
+          <span className="px-4 py-2 glass-green rounded-full text-sm font-medium flex items-center gap-2 w-fit shadow-lg">
             <Zap className="w-4 h-4" />
             Reliable Clean Energy
           </span>
@@ -52,13 +54,13 @@ export default function HomePage() {
         <div className="flex gap-4 mb-12">
           <Link 
             href="/auth/signup" 
-            className="px-8 py-4 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            className="px-8 py-4 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-xl font-semibold hover:from-green-700 hover:to-green-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
           >
             Get Started →
           </Link>
           <Link 
             href="#pricing" 
-            className="px-8 py-4 border-2 border-gray-300 rounded-xl font-semibold hover:border-green-600 hover:text-green-600 transition-all"
+            className="px-8 py-4 glass-card rounded-xl font-semibold hover:shadow-lg transition-all transform hover:-translate-y-0.5"
           >
             View Pricing
           </Link>
@@ -91,7 +93,7 @@ export default function HomePage() {
 
       {/* Image Placeholder */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="bg-gray-200 rounded-2xl h-96 relative overflow-hidden">
+        <div className="glass-card rounded-2xl h-96 relative overflow-hidden shadow-2xl">
           <Image 
             src="/images/solar-placeholder.png" 
             alt="Business building powered by solar panels"
@@ -99,10 +101,11 @@ export default function HomePage() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black/20"></div> {/* Subtle overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
           <div className="absolute bottom-6 left-6">
-            <div className="bg-green-600 text-white px-4 py-2 rounded-lg font-medium">
-              Monthly Savings<br />₦50,000
+            <div className="glass-dark text-white px-6 py-3 rounded-xl font-medium backdrop-blur-md shadow-lg">
+              Monthly Savings<br />
+              <span className="text-2xl font-bold">₦50,000</span>
             </div>
           </div>
         </div>
@@ -118,8 +121,8 @@ export default function HomePage() {
         </p>
         
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="glass-card p-6 rounded-2xl hover:shadow-xl transition-all">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+          <div className="glass-card p-6 rounded-2xl hover:shadow-2xl transition-all transform hover:-translate-y-1">
+            <div className="w-12 h-12 glass-green rounded-lg flex items-center justify-center mb-4">
               <span className="text-2xl">📋</span>
             </div>
             <h3 className="text-xl font-bold mb-2">Subscription Plans</h3>
@@ -128,8 +131,8 @@ export default function HomePage() {
             </p>
           </div>
           
-          <div className="glass-card p-6 rounded-2xl hover:shadow-xl transition-all">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+          <div className="glass-card p-6 rounded-2xl hover:shadow-2xl transition-all transform hover:-translate-y-1">
+            <div className="w-12 h-12 glass-green rounded-lg flex items-center justify-center mb-4">
               <span className="text-2xl">📊</span>
             </div>
             <h3 className="text-xl font-bold mb-2">Usage Tracking</h3>
@@ -138,8 +141,8 @@ export default function HomePage() {
             </p>
           </div>
           
-          <div className="glass-card p-6 rounded-2xl hover:shadow-xl transition-all">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+          <div className="glass-card p-6 rounded-2xl hover:shadow-2xl transition-all transform hover:-translate-y-1">
+            <div className="w-12 h-12 glass-green rounded-lg flex items-center justify-center mb-4">
               <span className="text-2xl">💰</span>
             </div>
             <h3 className="text-xl font-bold mb-2">Smart Billing</h3>
@@ -230,7 +233,7 @@ export default function HomePage() {
         
         <div className="grid md:grid-cols-3 gap-8">
           {/* Basic Plan */}
-          <div className="glass-card rounded-2xl p-8 hover:shadow-2xl transition-all">
+          <div className="glass-card rounded-2xl p-8 hover:shadow-2xl transition-all transform hover:-translate-y-1">
             <h3 className="text-2xl font-bold mb-2">Basic</h3>
             <p className="text-gray-600 mb-6">Perfect for small shops</p>
             <div className="mb-6">
@@ -249,7 +252,7 @@ export default function HomePage() {
             </div>
             <Link 
               href="/auth/signup?plan=basic" 
-              className="block w-full py-3 bg-green-600 text-white text-center rounded-lg font-medium hover:bg-green-700 transition mb-6"
+              className="block w-full py-3 bg-gradient-to-r from-green-600 to-green-500 text-white text-center rounded-lg font-medium hover:from-green-700 hover:to-green-600 transition mb-6 shadow-md hover:shadow-lg"
             >
               Get Started
             </Link>
@@ -275,7 +278,7 @@ export default function HomePage() {
 
           {/* Standard Plan */}
           <div className="glass-card border-2 border-green-600 rounded-2xl p-8 relative hover:shadow-2xl transition-all transform hover:scale-105">
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-green-600 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-green-600 to-green-500 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg">
               Most Popular
             </div>
             <h3 className="text-2xl font-bold mb-2">Standard</h3>
@@ -296,7 +299,7 @@ export default function HomePage() {
             </div>
             <Link 
               href="/auth/signup?plan=standard" 
-              className="block w-full py-3 bg-green-600 text-white text-center rounded-lg font-medium hover:bg-green-700 transition mb-6"
+              className="block w-full py-3 bg-gradient-to-r from-green-600 to-green-500 text-white text-center rounded-lg font-medium hover:from-green-700 hover:to-green-600 transition mb-6 shadow-md hover:shadow-lg"
             >
               Get Started
             </Link>
@@ -325,7 +328,7 @@ export default function HomePage() {
           </div>
 
           {/* Premium Plan */}
-          <div className="glass-card rounded-2xl p-8 hover:shadow-2xl transition-all">
+          <div className="glass-card rounded-2xl p-8 hover:shadow-2xl transition-all transform hover:-translate-y-1">
             <h3 className="text-2xl font-bold mb-2">Premium</h3>
             <p className="text-gray-600 mb-6">For large operations</p>
             <div className="mb-6">
@@ -344,7 +347,7 @@ export default function HomePage() {
             </div>
             <Link 
               href="/auth/signup?plan=premium" 
-              className="block w-full py-3 bg-green-600 text-white text-center rounded-lg font-medium hover:bg-green-700 transition mb-6"
+              className="block w-full py-3 bg-gradient-to-r from-green-600 to-green-500 text-white text-center rounded-lg font-medium hover:from-green-700 hover:to-green-600 transition mb-6 shadow-md hover:shadow-lg"
             >
               Get Started
             </Link>

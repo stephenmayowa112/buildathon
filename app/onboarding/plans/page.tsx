@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Zap } from "lucide-react";
 import { PLANS } from "@/types";
 import { formatCurrency } from "@/lib/billing";
 
@@ -20,9 +21,9 @@ export default function PlansPage() {
           <div className="flex items-center gap-6">
             <Link href="/" className="flex items-center gap-2 group">
               <div className="w-9 h-9 bg-green-600 rounded-lg flex items-center justify-center group-hover:bg-green-700 transition">
-                <span className="text-white font-bold">⚡</span>
+                <Zap className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold">VOLTPAY</span>
+              <span className="text-2xl font-bold">VOLTPAY</span>
             </Link>
             <div>
               <div className="text-sm text-gray-600">Plans</div>
