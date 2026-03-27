@@ -4,8 +4,25 @@ import { AuthProvider } from "@/lib/AuthProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "VOLTPAY - Affordable Solar Energy For Your Business",
-  description: "Simple, powerful tools designed for small businesses",
+  title: {
+    default: "VOLTPAY - Powering Africa's Businesses With Clean Energy",
+    template: "%s | VOLTPAY",
+  },
+  description: "Affordable, subscription-based solar energy solutions for businesses. Track usage, manage billing, and reduce costs with VOLTPAY.",
+  keywords: ["solar energy", "business", "Nigeria", "Africa", "clean energy", "subscription", "VOLTPAY"],
+  openGraph: {
+    title: "VOLTPAY - Clean Energy For Your Business",
+    description: "Affordable, subscription-based solar energy solutions for businesses.",
+    url: "https://voltpay.com",
+    siteName: "VOLTPAY",
+    locale: "en_NG",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "VOLTPAY - Clean Energy For Your Business",
+    description: "Affordable, subscription-based solar energy solutions for businesses.",
+  },
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
