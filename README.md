@@ -19,40 +19,62 @@
 
 ### Demo User Account
 
-To use the test credentials below, you must first create the test user in your Supabase database by running the following script in the SQL Editor:
+To use the test credentials below, you must first create the test user in your Supabase database.
+
+### Option 1: Use Supabase Dashboard (FASTEST - 30 seconds)
+
+1. Go to your Supabase Dashboard → Authentication → Users
+2. Click "Add user" → "Create new user"
+3. Enter:
+   - Email: `test@voltpay.com`
+   - Password: `Test123!`
+   - ✅ Check "Auto Confirm User"
+4. Click "Create user"
+5. Done! You can now login.
+
+### Option 2: Run SQL Script
 
 <details>
 <summary><b>Click to expand SQL Script</b></summary>
 
+Copy the contents of `create-test-user-working.sql` and run it in your Supabase SQL Editor. This will:
+- Create the test user with email confirmation
+- Set up a Standard plan subscription
+- Add 30 days of sample energy usage data
+- Create a completed payment record
+- Generate an invoice
+
+The script includes verification queries to confirm everything was created successfully.
+
+**Quick SQL (minimal version):**
 ```sql
--- 1. Create the Demo User in the Auth Table 
-INSERT INTO auth.users (
-  instance_id, id, aud, role, email, encrypted_password, email_confirmed_at,
-  recovery_sent_at, last_sign_in_at, raw_app_meta_data, raw_user_meta_data,
-  created_at, updated_at, confirmation_token, email_change, email_change_token_new, recovery_token
-) VALUES (
-  '00000000-0000-0000-0000-000000000000', gen_random_uuid(), 'authenticated', 'authenticated',
-  'test@voltpay.com', crypt('Test123!', gen_salt('bf')), current_timestamp, current_timestamp,
-  current_timestamp, '{"provider":"email","providers":["email"]}', '{}', current_timestamp,
-  current_timestamp, '', '', '', ''
-);
+DO $$
+DECLARE
+  new_user_id uuid := gen_random_uuid();
+BEGIN
+  -- Create user
+  INSERT INTO auth.users (
+    instance_id, id, aud, role, email, encrypted_password, 
+    email_confirmed_at, raw_app_meta_data, raw_user_meta_data,
+    created_at, updated_at, confirmation_token, email_change, 
+    email_change_token_new, recovery_token
+  ) VALUES (
+    '00000000-0000-0000-0000-000000000000', new_user_id, 
+    'authenticated', 'authenticated', 'test@voltpay.com',
+    crypt('Test123!', gen_salt('bf')), NOW(),
+    '{"provider":"email","providers":["email"]}',
+    '{"full_name":"Test User","business_name":"Test Business"}',
+    NOW(), NOW(), '', '', '', ''
+  );
 
--- 2. Link the identity so they can log in
-INSERT INTO auth.identities (
-  id, user_id, identity_data, provider, last_sign_in_at, created_at, updated_at
-)
-SELECT 
-  gen_random_uuid(), id, format('{"sub":"%s","email":"%s"}', id::text, email)::jsonb,
-  'email', current_timestamp, current_timestamp, current_timestamp
-FROM auth.users 
-WHERE email = 'test@voltpay.com';
+  -- Create identity
+  INSERT INTO auth.identities (id, user_id, identity_data, provider, created_at, updated_at)
+  VALUES (gen_random_uuid(), new_user_id, 
+    jsonb_build_object('sub', new_user_id::text, 'email', 'test@voltpay.com'),
+    'email', NOW(), NOW());
 
--- 3. (Optional) Insert dummy usage and payment data for the dashboard graphics to populate
-INSERT INTO public.usage_data (user_id, plan_id, daily_usage, monthly_usage, monthly_bill, extra_charges)
-SELECT id, 'standard', 25.5, 765.0, 25000, 0 FROM auth.users WHERE email = 'test@voltpay.com';
-
-INSERT INTO public.payments (user_id, total_bill, amount_paid, remaining_balance, status, due_date)
-SELECT id, 25000, 25000, 0, 'paid', current_timestamp + interval '30 days' FROM auth.users WHERE email = 'test@voltpay.com';
+  RAISE NOTICE 'User created! Login with test@voltpay.com / Test123!';
+END $$;
 ```
 </details>
 
