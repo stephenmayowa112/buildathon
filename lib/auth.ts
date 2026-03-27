@@ -30,7 +30,7 @@ export async function signUp(data: SignUpData) {
         full_name: data.fullName,
         business_name: data.businessName,
       },
-      emailRedirectTo: `${window.location.origin}/auth/callback`,
+      // Email confirmation disabled in Supabase, so no redirect needed
     },
   });
 

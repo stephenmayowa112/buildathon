@@ -47,6 +47,7 @@ export default function SignUpPage() {
         businessName: formData.businessName,
       });
       
+      // Since email confirmation is disabled, redirect directly to onboarding
       router.push("/onboarding/plans");
     } catch (err: any) {
       setError(err.message || "Failed to create account");
