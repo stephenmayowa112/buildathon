@@ -12,9 +12,9 @@ export default function Footer() {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative">
         <div className="grid md:grid-cols-4 gap-8">
-          <div>
+          <div className="animate-fadeInUp">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
+              <div className="w-9 h-9 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm animate-bounce-subtle">
                 <Zap className="w-5 h-5 text-white" />
               </div>
               <span className="text-2xl font-bold">VOLTPAY</span>
@@ -24,34 +24,34 @@ export default function Footer() {
             </p>
           </div>
           
-          <div>
+          <div className="animate-fadeInUp delay-100">
             <h3 className="font-bold mb-4">Product</h3>
             <ul className="space-y-2 text-green-50/80">
-              <li><Link href="#features" className="hover:text-white transition-colors">Features</Link></li>
-              <li><Link href="#pricing" className="hover:text-white transition-colors">Pricing</Link></li>
-              <li><Link href="#how-it-works" className="hover:text-white transition-colors">How it Works</Link></li>
+              <li><Link href="#features" className="hover:text-white transition-all hover:translate-x-1 inline-block">Features</Link></li>
+              <li><Link href="#pricing" className="hover:text-white transition-all hover:translate-x-1 inline-block">Pricing</Link></li>
+              <li><Link href="#how-it-works" className="hover:text-white transition-all hover:translate-x-1 inline-block">How it Works</Link></li>
             </ul>
           </div>
           
-          <div>
+          <div className="animate-fadeInUp delay-200">
             <h3 className="font-bold mb-4">Company</h3>
             <ul className="space-y-2 text-green-50/80">
-              <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
-              <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
-              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              <li><Link href="#" className="hover:text-white transition-all hover:translate-x-1 inline-block">About Us</Link></li>
+              <li><Link href="#" className="hover:text-white transition-all hover:translate-x-1 inline-block">Careers</Link></li>
+              <li><Link href="#" className="hover:text-white transition-all hover:translate-x-1 inline-block">Contact</Link></li>
             </ul>
           </div>
           
-          <div>
+          <div className="animate-fadeInUp delay-300">
             <h3 className="font-bold mb-4">Legal</h3>
             <ul className="space-y-2 text-green-50/80">
-              <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
+              <li><Link href="#" className="hover:text-white transition-all hover:translate-x-1 inline-block">Privacy policy</Link></li>
+              <li><Link href="#" className="hover:text-white transition-all hover:translate-x-1 inline-block">Terms of Service</Link></li>
             </ul>
           </div>
         </div>
         
-        <div className="border-t border-white/20 mt-8 pt-8 text-center text-green-50/80">
+        <div className="border-t border-white/20 mt-8 pt-8 text-center text-green-50/80 animate-fadeInUp delay-400">
           © 2026 VOLTPAY. All rights reserved.
         </div>
       </div>
