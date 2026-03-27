@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Zap, CheckCircle, TrendingUp, DollarSign, Clock, Users } from "lucide-react";
+import { Zap, CheckCircle, TrendingUp, DollarSign, Clock, Users, ClipboardList, BarChart3, Wallet } from "lucide-react";
 
 export default function HomePage() {
   const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("monthly");
@@ -33,7 +33,7 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-blue-50 to-white -z-10"></div>
         <div className="absolute top-20 right-10 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float"></div>
-        <div className="absolute bottom-10 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-10 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float-delayed"></div>
         
         <div className="inline-block mb-6 relative z-10">
           <span className="px-4 py-2 glass-green rounded-full text-sm font-medium flex items-center gap-2 w-fit shadow-lg">
@@ -122,8 +122,8 @@ export default function HomePage() {
         
         <div className="grid md:grid-cols-3 gap-8">
           <div className="glass-card p-6 rounded-2xl hover:shadow-2xl transition-all transform hover:-translate-y-1">
-            <div className="w-12 h-12 glass-green rounded-lg flex items-center justify-center mb-4">
-              <span className="text-2xl">📋</span>
+            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+              <ClipboardList className="w-6 h-6 text-green-600" />
             </div>
             <h3 className="text-xl font-bold mb-2">Subscription Plans</h3>
             <p className="text-gray-600">
@@ -132,8 +132,8 @@ export default function HomePage() {
           </div>
           
           <div className="glass-card p-6 rounded-2xl hover:shadow-2xl transition-all transform hover:-translate-y-1">
-            <div className="w-12 h-12 glass-green rounded-lg flex items-center justify-center mb-4">
-              <span className="text-2xl">📊</span>
+            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+              <BarChart3 className="w-6 h-6 text-green-600" />
             </div>
             <h3 className="text-xl font-bold mb-2">Usage Tracking</h3>
             <p className="text-gray-600">
@@ -142,8 +142,8 @@ export default function HomePage() {
           </div>
           
           <div className="glass-card p-6 rounded-2xl hover:shadow-2xl transition-all transform hover:-translate-y-1">
-            <div className="w-12 h-12 glass-green rounded-lg flex items-center justify-center mb-4">
-              <span className="text-2xl">💰</span>
+            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+              <Wallet className="w-6 h-6 text-green-600" />
             </div>
             <h3 className="text-xl font-bold mb-2">Smart Billing</h3>
             <p className="text-gray-600">
