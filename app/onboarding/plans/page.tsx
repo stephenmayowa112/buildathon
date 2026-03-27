@@ -1,17 +1,41 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
 import Link from "next/link";
 import { Zap } from "lucide-react";
+import { useAuth } from "@/lib/AuthProvider";
 import { PLANS } from "@/types";
 import { formatCurrency } from "@/lib/billing";
 
 export default function PlansPage() {
   const router = useRouter();
+  const { user, loading } = useAuth();
+
+  useEffect(() => {
+    if (!loading && !user) {
+      router.push("/auth/signin");
+    }
+  }, [user, loading, router]);
+
+  const userName = user?.user_metadata?.full_name || "User";
+  const userInitials = userName.substring(0, 2).toUpperCase() || "U";
+  const firstName = userName.split(" ")[0] || userName;
 
   const handleSelectPlan = (planId: string) => {
     router.push(`/dashboard?plan=${planId}`);
   };
+
+  if (loading || !user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="w-8 h-8 border-4 border-green-200 border-t-green-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-500 animate-pulse">Loading plans...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-white relative overflow-hidden">
@@ -40,9 +64,9 @@ export default function PlansPage() {
             </button>
             <div className="flex items-center gap-2 glass-card px-3 py-2 rounded-xl hover:shadow-lg transition-all">
               <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-green-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
-                A
+                {userInitials}
               </div>
-              <span className="font-medium">Alex</span>
+              <span className="font-medium">{firstName}</span>
               <span className="text-gray-400">▼</span>
             </div>
           </div>

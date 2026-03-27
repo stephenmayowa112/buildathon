@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { useAuth } from "@/lib/AuthProvider";
+import { signOut } from "@/lib/auth";
 import { 
   LayoutDashboard, 
   Zap, 
@@ -35,9 +37,25 @@ export default function DashboardLayout({
     { name: "Settings", path: "/dashboard/settings", icon: Settings },
   ];
 
-  const handleLogout = () => {
-    router.push("/");
+  const { user, loading } = useAuth();
+  const userName = user?.user_metadata?.full_name || "User";
+  const userInitials = userName.substring(0, 2).toUpperCase() || "U";
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      router.push("/");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
   };
+
+  // Protect route
+  useEffect(() => {
+    if (!loading && !user) {
+      router.push("/auth/signin");
+    }
+  }, [user, loading, router]);
 
   // Close mobile menu when route changes
   useEffect(() => {
@@ -55,6 +73,17 @@ export default function DashboardLayout({
       document.body.style.overflow = 'unset';
     };
   }, [mobileMenuOpen]);
+
+  if (loading || !user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="w-8 h-8 border-4 border-green-200 border-t-green-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-500 animate-pulse">Loading dashboard...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -117,10 +146,10 @@ export default function DashboardLayout({
             {/* User Profile in Mobile */}
             <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
               <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center text-white font-bold">
-                A
+                {userInitials}
               </div>
               <div className="flex-1">
-                <div className="font-semibold text-sm">Alex Bright</div>
+                <div className="font-semibold text-sm">{userName}</div>
                 <div className="text-xs text-gray-500">Standard Plan</div>
               </div>
             </div>
@@ -204,10 +233,10 @@ export default function DashboardLayout({
               className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition w-full"
             >
               <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center text-white font-bold">
-                A
+                {userInitials}
               </div>
               <div className="flex-1 text-left">
-                <div className="font-semibold text-sm">Alex Bright</div>
+                <div className="font-semibold text-sm">{userName}</div>
                 <div className="text-xs text-gray-500">Standard Plan</div>
               </div>
               <Settings className="w-4 h-4 text-gray-400" />
@@ -265,7 +294,7 @@ export default function DashboardLayout({
                 <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
               </button>
               <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center text-white font-bold cursor-pointer hover:shadow-lg transition">
-                A
+                {userInitials}
               </div>
             </div>
           </div>
