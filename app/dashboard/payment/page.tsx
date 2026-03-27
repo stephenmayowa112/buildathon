@@ -130,7 +130,7 @@ export default function PaymentPage() {
       </div>
 
       {/* Payment Summary */}
-      <div className="bg-white rounded-2xl p-8 border border-gray-200 mb-6">
+      <div className="glass-card rounded-2xl p-8 mb-6">
         <h2 className="text-xl font-bold mb-6">Payment Summary</h2>
         
         <div className="space-y-4 mb-6">

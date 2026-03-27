@@ -30,9 +30,11 @@ export default function HomePage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-white to-blue-50 -z-10"></div>
+        
         <div className="inline-block mb-6">
-          <span className="px-4 py-2 bg-green-50 text-green-600 rounded-full text-sm font-medium border border-green-200 flex items-center gap-2 w-fit">
+          <span className="px-4 py-2 glass-green rounded-full text-sm font-medium flex items-center gap-2 w-fit">
             <Zap className="w-4 h-4" />
             Reliable Clean Energy
           </span>
@@ -116,7 +118,7 @@ export default function HomePage() {
         </p>
         
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="p-6">
+          <div className="glass-card p-6 rounded-2xl hover:shadow-xl transition-all">
             <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
               <span className="text-2xl">📋</span>
             </div>
@@ -126,7 +128,7 @@ export default function HomePage() {
             </p>
           </div>
           
-          <div className="p-6">
+          <div className="glass-card p-6 rounded-2xl hover:shadow-xl transition-all">
             <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
               <span className="text-2xl">📊</span>
             </div>
@@ -136,7 +138,7 @@ export default function HomePage() {
             </p>
           </div>
           
-          <div className="p-6">
+          <div className="glass-card p-6 rounded-2xl hover:shadow-xl transition-all">
             <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
               <span className="text-2xl">💰</span>
             </div>
@@ -228,7 +230,7 @@ export default function HomePage() {
         
         <div className="grid md:grid-cols-3 gap-8">
           {/* Basic Plan */}
-          <div className="border border-gray-200 rounded-2xl p-8">
+          <div className="glass-card rounded-2xl p-8 hover:shadow-2xl transition-all">
             <h3 className="text-2xl font-bold mb-2">Basic</h3>
             <p className="text-gray-600 mb-6">Perfect for small shops</p>
             <div className="mb-6">
@@ -272,8 +274,8 @@ export default function HomePage() {
           </div>
 
           {/* Standard Plan */}
-          <div className="border-2 border-green-600 rounded-2xl p-8 relative">
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-green-600 text-white px-4 py-1 rounded-full text-sm font-medium">
+          <div className="glass-card border-2 border-green-600 rounded-2xl p-8 relative hover:shadow-2xl transition-all transform hover:scale-105">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-green-600 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg">
               Most Popular
             </div>
             <h3 className="text-2xl font-bold mb-2">Standard</h3>
@@ -323,7 +325,7 @@ export default function HomePage() {
           </div>
 
           {/* Premium Plan */}
-          <div className="border border-gray-200 rounded-2xl p-8">
+          <div className="glass-card rounded-2xl p-8 hover:shadow-2xl transition-all">
             <h3 className="text-2xl font-bold mb-2">Premium</h3>
             <p className="text-gray-600 mb-6">For large operations</p>
             <div className="mb-6">

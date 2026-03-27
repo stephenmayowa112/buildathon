@@ -24,7 +24,7 @@ export default function EnergyPage() {
 
       {/* Top Stats */}
       <div className="grid grid-cols-4 gap-6 mb-6">
-        <div className="bg-white rounded-xl p-6 border border-gray-200">
+        <div className="glass-card rounded-xl p-6 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Daily Energy Usage</span>
             <span className="text-xl">⚡</span>
@@ -33,7 +33,7 @@ export default function EnergyPage() {
           <div className="text-sm text-red-600">12% ↑</div>
         </div>
 
-        <div className="bg-white rounded-xl p-6 border border-gray-200">
+        <div className="glass-card rounded-xl p-6 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Monthly Usage</span>
             <span className="text-xl">📊</span>
@@ -42,7 +42,7 @@ export default function EnergyPage() {
           <div className="text-sm text-gray-600">4% ↑</div>
         </div>
 
-        <div className="bg-white rounded-xl p-6 border border-gray-200">
+        <div className="glass-card rounded-xl p-6 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Current Bill</span>
             <span className="text-xl">💰</span>
@@ -50,7 +50,7 @@ export default function EnergyPage() {
           <div className="text-3xl font-bold mb-1">{formatCurrency(billing.monthlyBill)}</div>
         </div>
 
-        <div className="bg-white rounded-xl p-6 border border-gray-200">
+        <div className="glass-card rounded-xl p-6 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Next Payment</span>
             <span className="text-xl">📅</span>
@@ -64,7 +64,7 @@ export default function EnergyPage() {
         {/* Left Column - Charts */}
         <div className="col-span-2 space-y-6">
           {/* Energy Usage Trend */}
-          <div className="bg-white rounded-xl p-6 border border-gray-200">
+          <div className="glass-card rounded-xl p-6">
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h2 className="text-xl font-bold">Energy Usage Trend</h2>
@@ -81,7 +81,7 @@ export default function EnergyPage() {
 
           {/* Bottom Cards */}
           <div className="grid grid-cols-3 gap-4">
-            <div className="bg-white rounded-xl p-6 border border-gray-200">
+            <div className="glass-card rounded-xl p-6">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-gray-600">Payment Status</span>
                 <span className="text-xl">💳</span>
@@ -92,7 +92,7 @@ export default function EnergyPage() {
               </button>
             </div>
 
-            <div className="bg-white rounded-xl p-6 border border-gray-200">
+            <div className="glass-card rounded-xl p-6">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-gray-600">Forecasted Usage</span>
                 <span className="text-xl">📈</span>
@@ -104,7 +104,7 @@ export default function EnergyPage() {
               </p>
             </div>
 
-            <div className="bg-white rounded-xl p-6 border border-gray-200">
+            <div className="glass-card rounded-xl p-6">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-gray-600">Active Alerts</span>
                 <span className="text-xl">🔔</span>
@@ -117,7 +117,7 @@ export default function EnergyPage() {
           </div>
 
           {/* Recent Usage Logs */}
-          <div className="bg-white rounded-xl p-6 border border-gray-200">
+          <div className="glass-card rounded-xl p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-bold">Recent Usage Logs</h2>
               <button className="text-green-600 hover:text-green-700 text-sm font-medium">
@@ -188,7 +188,7 @@ export default function EnergyPage() {
 
         {/* Right Column - Plan Card */}
         <div>
-          <div className="bg-white rounded-xl p-6 border-2 border-green-600 sticky top-6">
+          <div className="glass-card rounded-xl p-6 border-2 border-green-600 sticky top-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-xl font-bold">{plan.name} Plan</h3>
               <span className="px-3 py-1 bg-green-600 text-white rounded-full text-xs font-medium">

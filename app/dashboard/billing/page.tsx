@@ -66,7 +66,7 @@ export default function BillingPage() {
 
       {/* Top Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
-        <div className="bg-white rounded-xl p-6 border border-gray-200">
+        <div className="glass-card rounded-xl p-6 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Monthly Bill</span>
             <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Current Cycle</span>
@@ -75,7 +75,7 @@ export default function BillingPage() {
           <p className="text-sm text-gray-600">Aggregated Total for the March billing cycle</p>
         </div>
 
-        <div className="bg-white rounded-xl p-6 border border-gray-200">
+        <div className="glass-card rounded-xl p-6 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Amount Paid</span>
             <span className={`px-2 py-1 rounded text-xs ${
@@ -92,7 +92,7 @@ export default function BillingPage() {
           <p className="text-sm text-gray-600">Total successfully processed payment this month</p>
         </div>
 
-        <div className="bg-white rounded-xl p-6 border border-gray-200">
+        <div className="glass-card rounded-xl p-6 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Outstanding Balance</span>
             <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Due Date</span>
@@ -111,7 +111,7 @@ export default function BillingPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
         {/* Default Payment Method */}
-        <div className="bg-white rounded-xl p-6 border border-gray-200">
+        <div className="glass-card rounded-xl p-6">
           <h3 className="font-bold mb-2">Default Payment Method</h3>
           <p className="text-sm text-gray-600 mb-4">Primary card used for automatic renewals</p>
           
@@ -128,7 +128,7 @@ export default function BillingPage() {
         </div>
 
         {/* Next Auto Pay */}
-        <div className="bg-white rounded-xl p-6 border border-gray-200">
+        <div className="glass-card rounded-xl p-6">
           <h3 className="font-bold mb-2">Next Auto Pay</h3>
           <p className="text-sm text-gray-600 mb-4">Automated deduction Schedule</p>
           
@@ -140,8 +140,8 @@ export default function BillingPage() {
         {/* Quick Settlement */}
         <div className={`rounded-xl p-6 border ${
           outstandingBalance > 0 
-            ? "bg-green-50 border-green-200" 
-            : "bg-gray-50 border-gray-200"
+            ? "glass-green border-green-200" 
+            : "glass border-gray-200"
         }`}>
           <h3 className="font-bold mb-2">Quick Settlement</h3>
           {outstandingBalance > 0 ? (
@@ -171,7 +171,7 @@ export default function BillingPage() {
       </div>
 
       {/* Transaction History */}
-      <div className="bg-white rounded-xl p-6 border border-gray-200">
+      <div className="glass-card rounded-xl p-6">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-bold">Transaction History</h2>
           <div className="flex gap-3">

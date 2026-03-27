@@ -64,7 +64,7 @@ export default function DashboardPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6">
-        <div className="bg-green-600 text-white rounded-xl p-4 sm:p-6">
+        <div className="bg-gradient-to-br from-green-600 to-green-700 text-white rounded-xl p-4 sm:p-6 glass-dark shadow-lg">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs sm:text-sm opacity-90">Monthly Bill</span>
             <DollarSign className="w-5 h-5 opacity-90" />
@@ -73,7 +73,7 @@ export default function DashboardPage() {
           <div className="text-xs sm:text-sm opacity-90">📅 Due March 31,2026</div>
         </div>
 
-        <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200">
+        <div className="glass-card rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs sm:text-sm text-gray-600">Daily Usage</span>
             <Zap className="w-5 h-5 text-yellow-500" />
@@ -85,7 +85,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200">
+        <div className="glass-card rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs sm:text-sm text-gray-600">Active Plan</span>
             <CheckCircle className="w-5 h-5 text-green-600" />
@@ -94,7 +94,7 @@ export default function DashboardPage() {
           <div className="text-xs sm:text-sm text-gray-600">{plan.monthlyLimit} kWh/mo ≈ ₦{plan.extraRate}/extra kWh</div>
         </div>
 
-        <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200">
+        <div className="glass-card rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs sm:text-sm text-gray-600">Payment Status</span>
             <CreditCard className={`w-5 h-5 ${
