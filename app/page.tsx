@@ -107,7 +107,7 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <section id="features" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h2 className="text-4xl font-bold text-center mb-4">
           Everything You Need to Manage Solar Energy
         </h2>
@@ -149,7 +149,7 @@ export default function HomePage() {
       </section>
 
       {/* How It Works */}
-      <section className="bg-gray-50 py-16">
+      <section id="how-it-works" className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-4">
             How VOLTPAY works
