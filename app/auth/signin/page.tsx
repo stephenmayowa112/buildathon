@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Zap } from "lucide-react";
 import { signIn } from "@/lib/auth";
 
 export default function SignInPage() {
@@ -28,28 +29,29 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-white flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-white flex items-center justify-center px-4 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMmMzNWUiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDE2YzAtMi4yMSAxLjc5LTQgNC00czQgMS43OSA0IDQtMS43OSA0LTQgNC00LTEuNzktNC00em0wIDI0YzAtMi4yMSAxLjc5LTQgNC00czQgMS43OSA0IDQtMS43OSA0LTQgNC00LTEuNzktNC00ek0xMiAxNmMwLTIuMjEgMS43OS00IDQtNHM0IDEuNzkgNCA0LTEuNzkgNC00IDQtNC0xLjc5LTQtNHptMCAyNGMwLTIuMjEgMS43OS00IDQtNHM0IDEuNzkgNCA0LTEuNzkgNC00IDQtNC0xLjc5LTQtNHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-40"></div>
+      <div className="w-full max-w-md relative z-10">
         {/* Logo */}
         <Link href="/" className="flex items-center justify-center gap-2 mb-8 group">
-          <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center group-hover:bg-green-700 transition">
-            <span className="text-white font-bold text-2xl">⚡</span>
+          <div className="w-9 h-9 bg-green-600 rounded-lg flex items-center justify-center group-hover:bg-green-700 transition">
+            <Zap className="w-5 h-5 text-white" />
           </div>
-          <span className="text-3xl font-bold">VOLTPAY</span>
+          <span className="text-2xl font-bold">VOLTPAY</span>
         </Link>
 
-        <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+        <div className="glass-card rounded-2xl shadow-2xl p-8 border border-white/30">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-2">Welcome Back</h2>
             <p className="text-gray-600">Sign in to manage solar energy subscription</p>
           </div>
 
           {/* Tab Switcher */}
-          <div className="flex gap-2 mb-8 bg-gray-100 p-1 rounded-xl">
-            <div className="flex-1 py-3 bg-white rounded-lg text-center font-semibold shadow-sm">
+          <div className="flex gap-2 mb-8 glass-green p-1 rounded-xl">
+            <div className="flex-1 py-3 glass-card rounded-lg text-center font-semibold shadow-sm">
               Sign in
             </div>
-            <Link href="/auth/signup" className="flex-1 py-3 text-center text-gray-600 hover:text-gray-900 transition">
+            <Link href="/auth/signup" className="flex-1 py-3 text-center text-gray-600 hover:text-gray-900 transition rounded-lg hover:bg-white/50">
               Create Account
             </Link>
           </div>
@@ -102,7 +104,7 @@ export default function SignInPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3.5 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="w-full py-3.5 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-xl font-semibold hover:from-green-700 hover:to-green-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
               {isLoading ? "Signing in..." : "Sign in →"}
             </button>
