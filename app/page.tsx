@@ -54,13 +54,13 @@ export default function HomePage() {
         <div className="flex gap-4 mb-12 animate-fadeInUp delay-300">
           <Link 
             href="/auth/signup" 
-            className="px-8 py-4 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-xl font-semibold hover:from-green-700 hover:to-green-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105"
+            className="px-8 py-4 clay-button text-white rounded-xl font-semibold transition-all"
           >
             Get Started →
           </Link>
           <Link 
             href="#pricing" 
-            className="px-8 py-4 glass-card rounded-xl font-semibold hover:shadow-lg transition-all transform hover:-translate-y-1"
+            className="px-8 py-4 clay-card rounded-xl font-semibold clay-hover transition-all"
           >
             View Pricing
           </Link>
@@ -121,8 +121,8 @@ export default function HomePage() {
         </p>
         
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="glass-card p-6 rounded-2xl hover:shadow-2xl transition-all transform hover:-translate-y-2 animate-fadeInUp delay-200 hover-lift">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 animate-bounce-subtle">
+          <div className="clay-card clay-hover p-6 rounded-2xl transition-all animate-fadeInUp delay-200">
+            <div className="w-12 h-12 clay-green rounded-lg flex items-center justify-center mb-4 animate-bounce-subtle">
               <ClipboardList className="w-6 h-6 text-green-600" />
             </div>
             <h3 className="text-xl font-bold mb-2">Subscription Plans</h3>
@@ -131,8 +131,8 @@ export default function HomePage() {
             </p>
           </div>
           
-          <div className="glass-card p-6 rounded-2xl hover:shadow-2xl transition-all transform hover:-translate-y-2 animate-fadeInUp delay-300 hover-lift">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 animate-bounce-subtle" style={{ animationDelay: '0.2s' }}>
+          <div className="clay-card clay-hover p-6 rounded-2xl transition-all animate-fadeInUp delay-300">
+            <div className="w-12 h-12 clay-green rounded-lg flex items-center justify-center mb-4 animate-bounce-subtle" style={{ animationDelay: '0.2s' }}>
               <BarChart3 className="w-6 h-6 text-green-600" />
             </div>
             <h3 className="text-xl font-bold mb-2">Usage Tracking</h3>
@@ -141,8 +141,8 @@ export default function HomePage() {
             </p>
           </div>
           
-          <div className="glass-card p-6 rounded-2xl hover:shadow-2xl transition-all transform hover:-translate-y-2 animate-fadeInUp delay-400 hover-lift">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 animate-bounce-subtle" style={{ animationDelay: '0.4s' }}>
+          <div className="clay-card clay-hover p-6 rounded-2xl transition-all animate-fadeInUp delay-400">
+            <div className="w-12 h-12 clay-green rounded-lg flex items-center justify-center mb-4 animate-bounce-subtle" style={{ animationDelay: '0.4s' }}>
               <Wallet className="w-6 h-6 text-green-600" />
             </div>
             <h3 className="text-xl font-bold mb-2">Smart Billing</h3>
@@ -165,7 +165,7 @@ export default function HomePage() {
           
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center animate-fadeInUp delay-200">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-green-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg glow-pulse">
+              <div className="w-16 h-16 clay-green text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg glow-pulse">
                 1
               </div>
               <h3 className="text-xl font-bold mb-2">Choose Simple Plan</h3>
@@ -175,7 +175,7 @@ export default function HomePage() {
             </div>
             
             <div className="text-center animate-fadeInUp delay-300">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-green-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg glow-pulse" style={{ animationDelay: '0.5s' }}>
+              <div className="w-16 h-16 clay-green text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg glow-pulse" style={{ animationDelay: '0.5s' }}>
                 2
               </div>
               <h3 className="text-xl font-bold mb-2">Track Your Usage</h3>
@@ -185,7 +185,7 @@ export default function HomePage() {
             </div>
             
             <div className="text-center animate-fadeInUp delay-400">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-green-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg glow-pulse" style={{ animationDelay: '1s' }}>
+              <div className="w-16 h-16 clay-green text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg glow-pulse" style={{ animationDelay: '1s' }}>
                 3
               </div>
               <h3 className="text-xl font-bold mb-2">Pay Monthly</h3>
@@ -233,7 +233,7 @@ export default function HomePage() {
         
         <div className="grid md:grid-cols-3 gap-8">
           {/* Basic Plan */}
-          <div className="glass-card rounded-2xl p-8 hover:shadow-2xl transition-all transform hover:-translate-y-2 animate-fadeInUp delay-200 hover-lift">
+          <div className="clay-card clay-hover p-8 rounded-2xl transition-all animate-fadeInUp delay-200">
             <h3 className="text-2xl font-bold mb-2">Basic</h3>
             <p className="text-gray-600 mb-6">Perfect for small shops</p>
             <div className="mb-6">
@@ -347,9 +347,9 @@ export default function HomePage() {
             </div>
             <Link 
               href="/auth/signup?plan=premium" 
-              className="block w-full py-3 bg-gradient-to-r from-green-600 to-green-500 text-white text-center rounded-lg font-medium hover:from-green-700 hover:to-green-600 transition mb-6 shadow-md hover:shadow-lg"
+              className="block w-full py-3 clay-button text-white text-center rounded-lg font-medium transition-all"
             >
-              Get Started
+              Get Started →
             </Link>
             <ul className="space-y-3">
               <li className="flex items-center gap-2">

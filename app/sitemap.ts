@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://voltpay.com';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://voltpaybuild.vercel.app';
 
   // Core public routes
   const routes = [

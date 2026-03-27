@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "VOLTPAY - Clean Energy For Your Business",
     description: "Affordable, subscription-based solar energy solutions for businesses.",
-    url: "https://voltpay.com",
+    url: "https://voltpaybuild.vercel.app",
     siteName: "VOLTPAY",
     locale: "en_NG",
     type: "website",

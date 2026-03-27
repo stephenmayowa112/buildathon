@@ -64,16 +64,16 @@ export default function DashboardPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6">
-        <div className="bg-gradient-to-br from-green-600 to-green-700 text-white rounded-xl p-4 sm:p-6 glass-dark shadow-lg animate-fadeInUp delay-100 hover-lift glow-pulse">
+        <div className="clay-green text-green-900 rounded-xl p-4 sm:p-6 shadow-lg animate-fadeInUp delay-100 clay-hover">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs sm:text-sm opacity-90">Monthly Bill</span>
-            <DollarSign className="w-5 h-5 opacity-90 animate-bounce-subtle" />
+            <span className="text-xs sm:text-sm font-medium">Monthly Bill</span>
+            <DollarSign className="w-5 h-5 animate-bounce-subtle" />
           </div>
           <div className="text-2xl sm:text-3xl font-bold mb-1 text-shimmer">{formatCurrency(billing.monthlyBill)}</div>
-          <div className="text-xs sm:text-sm opacity-90">📅 Due March 31,2026</div>
+          <div className="text-xs sm:text-sm">📅 Due March 31,2026</div>
         </div>
 
-        <div className="glass-card rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all animate-fadeInUp delay-200 hover-lift">
+        <div className="clay-card rounded-xl p-4 sm:p-6 transition-all animate-fadeInUp delay-200 clay-hover">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs sm:text-sm text-gray-600">Daily Usage</span>
             <Zap className="w-5 h-5 text-yellow-500 animate-bounce-subtle" />
@@ -85,7 +85,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="glass-card rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all animate-fadeInUp delay-300 hover-lift">
+        <div className="clay-card rounded-xl p-4 sm:p-6 transition-all animate-fadeInUp delay-300 clay-hover">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs sm:text-sm text-gray-600">Active Plan</span>
             <CheckCircle className="w-5 h-5 text-green-600 animate-bounce-subtle" />
@@ -94,7 +94,7 @@ export default function DashboardPage() {
           <div className="text-xs sm:text-sm text-gray-600">{plan.monthlyLimit} kWh/mo ≈ ₦{plan.extraRate}/extra kWh</div>
         </div>
 
-        <div className="glass-card rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all animate-fadeInUp delay-400 hover-lift">
+        <div className="clay-card rounded-xl p-4 sm:p-6 transition-all animate-fadeInUp delay-400 clay-hover">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs sm:text-sm text-gray-600">Payment Status</span>
             <CreditCard className={`w-5 h-5 animate-bounce-subtle ${

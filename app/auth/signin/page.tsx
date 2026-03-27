@@ -40,15 +40,15 @@ export default function SignInPage() {
           <span className="text-2xl font-bold">VOLTPAY</span>
         </Link>
 
-        <div className="glass-card rounded-2xl shadow-2xl p-8 border border-white/30">
+        <div className="clay-card rounded-2xl shadow-2xl p-8 border border-white/30 animate-scaleIn">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-2">Welcome Back</h2>
             <p className="text-gray-600">Sign in to manage solar energy subscription</p>
           </div>
 
           {/* Tab Switcher */}
-          <div className="flex gap-2 mb-8 glass-green p-1 rounded-xl">
-            <div className="flex-1 py-3 glass-card rounded-lg text-center font-semibold shadow-sm">
+          <div className="flex gap-2 mb-8 clay-pressed p-1 rounded-xl">
+            <div className="flex-1 py-3 clay-card rounded-lg text-center font-semibold shadow-sm">
               Sign in
             </div>
             <Link href="/auth/signup" className="flex-1 py-3 text-center text-gray-600 hover:text-gray-900 transition rounded-lg hover:bg-white/50">
@@ -69,8 +69,8 @@ export default function SignInPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="alex@brighforge.com"
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                placeholder="alex@brightforge.com"
+                className="w-full px-4 py-3 clay-input rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 transition"
                 required
               />
             </div>
@@ -88,7 +88,7 @@ export default function SignInPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                  className="w-full px-4 py-3 clay-input rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 transition"
                   required
                 />
                 <button
@@ -104,7 +104,7 @@ export default function SignInPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3.5 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-xl font-semibold hover:from-green-700 hover:to-green-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="w-full py-3.5 clay-button text-white rounded-xl font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? "Signing in..." : "Sign in →"}
             </button>
