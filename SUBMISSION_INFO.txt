@@ -115,10 +115,28 @@ Environment:
 - Payment Gateway: Interswitch TEST mode
 
 =====================================
+TEAM INFORMATION
+=====================================
+
+Team Name: VoltPay
+Team Lead: Ojunde Stephen Mayowa (Sole Developer)
+
+Team Members:
+1. Ojunde Stephen Mayowa - Team Lead & Full Stack Developer
+2. Daniel Ogunleye - UI/UX Designer
+3. Okoro Kizito Okechukwu - Project Manager
+4. Oluwafemi Eniola Dayo - Data Analyst
+
+Development: 100% by Ojunde Stephen Mayowa
+Design: Daniel Ogunleye
+Management: Okoro Kizito Okechukwu
+Analytics: Oluwafemi Eniola Dayo
+
+=====================================
 CONTACT INFORMATION
 =====================================
 
-Team Lead: Stephen Ojunde
+Team Lead: Ojunde Stephen Mayowa
 Project: VOLTPAY
 Buildathon: Enyata x Interswitch 2026
 

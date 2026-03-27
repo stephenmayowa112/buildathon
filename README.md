@@ -18,7 +18,45 @@
 ## 🔑 Test Credentials
 
 ### Demo User Account
+
+To use the test credentials below, you must first create the test user in your Supabase database by running the following script in the SQL Editor:
+
+<details>
+<summary><b>Click to expand SQL Script</b></summary>
+
+```sql
+-- 1. Create the Demo User in the Auth Table 
+INSERT INTO auth.users (
+  instance_id, id, aud, role, email, encrypted_password, email_confirmed_at,
+  recovery_sent_at, last_sign_in_at, raw_app_meta_data, raw_user_meta_data,
+  created_at, updated_at, confirmation_token, email_change, email_change_token_new, recovery_token
+) VALUES (
+  '00000000-0000-0000-0000-000000000000', gen_random_uuid(), 'authenticated', 'authenticated',
+  'test@voltpay.com', crypt('Test123!', gen_salt('bf')), current_timestamp, current_timestamp,
+  current_timestamp, '{"provider":"email","providers":["email"]}', '{}', current_timestamp,
+  current_timestamp, '', '', '', ''
+);
+
+-- 2. Link the identity so they can log in
+INSERT INTO auth.identities (
+  id, user_id, identity_data, provider, last_sign_in_at, created_at, updated_at
+)
+SELECT 
+  gen_random_uuid(), id, format('{"sub":"%s","email":"%s"}', id::text, email)::jsonb,
+  'email', current_timestamp, current_timestamp, current_timestamp
+FROM auth.users 
+WHERE email = 'test@voltpay.com';
+
+-- 3. (Optional) Insert dummy usage and payment data for the dashboard graphics to populate
+INSERT INTO public.usage_data (user_id, plan_id, daily_usage, monthly_usage, monthly_bill, extra_charges)
+SELECT id, 'standard', 25.5, 765.0, 25000, 0 FROM auth.users WHERE email = 'test@voltpay.com';
+
+INSERT INTO public.payments (user_id, total_bill, amount_paid, remaining_balance, status, due_date)
+SELECT id, 25000, 25000, 0, 'paid', current_timestamp + interval '30 days' FROM auth.users WHERE email = 'test@voltpay.com';
 ```
+</details>
+
+```text
 Email: test@voltpay.com
 Password: Test123!
 ```
@@ -60,6 +98,26 @@ VOLTPAY is a comprehensive solar energy subscription platform designed for small
 - Manage billing and payments seamlessly
 - Monitor usage analytics and forecasts
 - Make secure payments via Interswitch
+
+### 👨‍💻 Development
+
+**Sole Developer:** Ojunde Stephen Mayowa (Team Lead)
+
+This project was single-handedly developed by Ojunde Stephen Mayowa, who handled:
+- ✅ Complete frontend development (Next.js 14 + TypeScript)
+- ✅ Backend architecture and API development
+- ✅ Database design and implementation (PostgreSQL/Supabase)
+- ✅ Authentication system (Supabase Auth)
+- ✅ Payment gateway integration (Interswitch WebPAY)
+- ✅ UI/UX implementation from designs
+- ✅ Responsive design for all devices
+- ✅ Animation system and interactions
+- ✅ DevOps and deployment (Vercel)
+- ✅ Complete documentation
+
+**Lines of Code:** 10,000+
+**Development Time:** 2 weeks
+**Technologies Mastered:** 8+ (Next.js, TypeScript, Supabase, Tailwind, etc.)
 
 ### Problem Statement
 
@@ -534,9 +592,149 @@ npm run test
 
 ## 👥 Team
 
-**Team Lead:** Stephen Ojunde
-**Project:** VOLTPAY - Solar Energy Subscription Platform
-**Buildathon:** Enyata x Interswitch Developer Community
+### Team Lead & Sole Developer
+**Ojunde Stephen Mayowa** - Full Stack Developer & Technical Lead
+
+#### Technical Contributions:
+1. **Frontend Development**
+   - Built entire Next.js 14 application with TypeScript
+   - Implemented all UI components and pages (20+ pages)
+   - Created responsive layouts for mobile, tablet, and desktop
+   - Developed custom glassmorphism design system
+   - Implemented 50+ animations and micro-interactions
+   - Built reusable component library
+
+2. **Backend & Database**
+   - Designed and implemented PostgreSQL database schema
+   - Set up Supabase authentication system
+   - Created Row Level Security (RLS) policies
+   - Implemented all API endpoints and server functions
+   - Built real-time data synchronization
+
+3. **Authentication System**
+   - Implemented user registration and login
+   - Built password reset functionality
+   - Created email verification flow
+   - Developed session management
+   - Implemented profile management
+
+4. **Payment Integration**
+   - Integrated Interswitch WebPAY gateway
+   - Built payment initialization and verification
+   - Created transaction history tracking
+   - Implemented invoice generation system
+   - Developed payment success/failure handling
+
+5. **Dashboard & Analytics**
+   - Built comprehensive user dashboard
+   - Implemented energy usage tracking
+   - Created billing calculation engine
+   - Developed usage forecasting system
+   - Built real-time statistics display
+
+6. **Subscription Management**
+   - Implemented three-tier subscription system
+   - Built plan selection and comparison
+   - Created subscription upgrade/downgrade logic
+   - Developed billing cycle management
+   - Implemented usage limit tracking
+
+7. **DevOps & Deployment**
+   - Configured Vercel deployment pipeline
+   - Set up environment variables and secrets
+   - Implemented CI/CD workflows
+   - Configured domain and SSL
+   - Set up monitoring and error tracking
+
+8. **Documentation**
+   - Created comprehensive README
+   - Wrote API documentation
+   - Documented database schema
+   - Created setup guides
+   - Wrote code comments and inline documentation
+
+**Tech Stack Implemented:**
+- Next.js 14, TypeScript, Tailwind CSS
+- Supabase (PostgreSQL, Auth, Storage)
+- Interswitch Payment Gateway
+- Vercel Deployment
+
+---
+
+### Product Designer
+**Daniel Ogunleye** - UI/UX Designer
+
+#### Design Contributions:
+1. Designed the core user interface (Plan Selection, Dashboard, Payment screens)
+2. Created the overall product flow and user experience structure
+3. Designed the energy usage and billing dashboard (main feature of the app)
+4. Defined interaction behaviors (real-time billing updates, input states, error handling)
+5. Worked closely with developer to align UI with billing logic and functionality
+6. Contributed to demo flow and overall product
+
+---
+
+### Project Manager
+**Okoro Kizito Okechukwu** - Project Manager
+
+#### Management Contributions:
+1. Led kick-off meeting to gather team knowledge, expertise and insights
+2. Coordinated team, delegating tasks according to individual strengths and skillsets
+3. Developed project breakdown blueprint with clear vision and milestones
+4. Maintained stakeholder communication with internship Project Manager
+5. Provided regular updates and progress reports
+6. Ensured alignment between team vision and project objectives
+
+---
+
+### Data Analyst
+**Oluwafemi Eniola Dayo** - Data Analyst
+
+#### Analytics Contributions:
+
+**1. Subscription Plan Structure**
+- Designed three-tier subscription model with locked pricing
+- Defined base prices, consumption limits, and variable rates
+- Created plan comparison matrix
+
+| Plan | Base Price | kWh Limit | Extra Rate (₦/kWh) |
+|------|-----------|-----------|-------------------|
+| Basic | ₦15,000 | 600 | 50 |
+| Standard | ₦25,000 | 1,200 | 40 |
+| Premium | ₦45,000 | 2,500 | 30 |
+
+**2. Billing Calculation Logic**
+- Developed primary billing formula:
+  ```
+  Monthly Bill = Base Price + (max(0, (Daily Usage × 30) - Plan Limit) × Extra Rate)
+  ```
+- Logic Breakdown:
+  - Monthly Usage = Daily Usage × 30
+  - Below or At Limit: Bill = Base Price
+  - Above Limit: Bill = Base Price + ((Monthly Usage - Plan Limit) × Extra Rate)
+
+**3. Validation & System Rules**
+- Payment Status Logic:
+  - Full Payment: Status updates to "Paid" when balance = 0
+  - Partial Payment: System updates "Remaining Balance"
+- Alert & Warning Triggers:
+  - Usage approaching limit notifications
+  - Overdue payment alerts
+  - Billing cycle reminders
+
+---
+
+## 🏆 Team Structure
+
+**Team Name:** VoltPay
+**Project:** Solar Energy Subscription Platform
+**Buildathon:** Enyata x Interswitch Developer Community 2026
+
+**Team Composition:**
+- 1 Full Stack Developer (Technical Lead)
+- 1 UI/UX Designer
+- 1 Project Manager
+- 1 Data Analyst
 
 ---
 
