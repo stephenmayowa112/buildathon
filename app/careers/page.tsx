@@ -123,7 +123,7 @@ export default function CareersPage() {
                   </div>
                 </div>
                 <Link
-                  href={`mailto:careers@voltpay.com?subject=Application: ${position.title}`}
+                  href={`/careers/apply?role=${encodeURIComponent(position.title)}`}
                   className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 text-white rounded-xl font-medium hover:bg-green-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
                 >
                   Apply <ArrowRight className="w-4 h-4" />
@@ -143,10 +143,10 @@ export default function CareersPage() {
             you'd like to contribute to the clean energy revolution.
           </p>
           <Link
-            href="mailto:careers@voltpay.com"
+            href="/careers/apply?role=General Application"
             className="inline-flex items-center gap-2 px-8 py-4 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
           >
-            Send Your Resume <ArrowRight className="w-5 h-5" />
+            Apply Now <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </section>

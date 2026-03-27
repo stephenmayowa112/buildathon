@@ -129,23 +129,23 @@ export default function PlansPage() {
 
             <button
               onClick={() => handleSelectPlan("standard")}
-              className="w-full py-3 bg-green-400 text-green-900 rounded-lg font-bold hover:bg-green-300 transition"
+              className="w-full py-3 bg-gradient-to-r from-green-400 to-green-300 text-green-900 rounded-lg font-bold hover:from-green-300 hover:to-green-200 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
             >
-              Current Plan
+              Current Plan ✓
             </button>
           </div>
 
           {/* Premium Plan */}
-          <div className="bg-green-50 rounded-2xl p-8 border border-green-200 hover:shadow-lg transition">
+          <div className="glass-card rounded-2xl p-8 border-2 border-green-200 hover:shadow-2xl transition-all animate-fadeInUp delay-400 hover-lift transform hover:-translate-y-2">
             <div className="mb-6">
               <h3 className="text-2xl font-bold mb-2">Premium</h3>
-              <span className="inline-block px-3 py-1 bg-green-200 text-green-800 rounded-full text-sm">
+              <span className="inline-block px-3 py-1 bg-gradient-to-r from-green-200 to-green-100 text-green-800 rounded-full text-sm font-medium shadow-sm">
                 Enterprise
               </span>
             </div>
 
             <div className="mb-6">
-              <div className="text-4xl font-bold mb-1">₦45k</div>
+              <div className="text-4xl font-bold mb-1 text-shimmer">₦45k</div>
               <div className="text-gray-600">/ month</div>
               <div className="text-sm text-gray-500 mt-2">
                 Includes 2500 kWh ~ ₦30/extra kWh
@@ -153,19 +153,37 @@ export default function PlansPage() {
             </div>
 
             <ul className="space-y-3 mb-8 text-sm">
-              <li>Up to 2500 kWh/month included</li>
-              <li>₦30 per extra kWh</li>
-              <li>Dedicated support (4h response)</li>
-              <li>Full analytics suite</li>
-              <li>Advanced monitoring dashboard</li>
-              <li>Unlimited business locations</li>
+              <li className="flex items-center gap-2">
+                <span className="text-green-600">✓</span>
+                Up to 2500 kWh/month included
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-green-600">✓</span>
+                ₦30 per extra kWh
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-green-600">✓</span>
+                Dedicated support (4h response)
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-green-600">✓</span>
+                Full analytics suite
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-green-600">✓</span>
+                Advanced monitoring dashboard
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-green-600">✓</span>
+                Unlimited business locations
+              </li>
             </ul>
 
             <button
               onClick={() => handleSelectPlan("premium")}
-              className="w-full py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition"
+              className="w-full py-3 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-lg font-medium hover:from-green-700 hover:to-green-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
             >
-              Select Plan
+              Select Plan →
             </button>
           </div>
         </div>
