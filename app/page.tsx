@@ -113,16 +113,16 @@ export default function HomePage() {
 
       {/* Features Section */}
       <section id="features" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-4xl font-bold text-center mb-4">
-          Everything You Need to Manage Solar Energy
+        <h2 className="text-4xl font-bold text-center mb-4 animate-fadeInUp">
+          Everything You Need to Manage <span className="text-gradient-animate">Solar Energy</span>
         </h2>
-        <p className="text-center text-gray-600 mb-12">
+        <p className="text-center text-gray-600 mb-12 animate-fadeInUp delay-100">
           Simple, powerful tools designed for small businesses
         </p>
         
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="glass-card p-6 rounded-2xl hover:shadow-2xl transition-all transform hover:-translate-y-1">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+          <div className="glass-card p-6 rounded-2xl hover:shadow-2xl transition-all transform hover:-translate-y-2 animate-fadeInUp delay-200 hover-lift">
+            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 animate-bounce-subtle">
               <ClipboardList className="w-6 h-6 text-green-600" />
             </div>
             <h3 className="text-xl font-bold mb-2">Subscription Plans</h3>
@@ -131,8 +131,8 @@ export default function HomePage() {
             </p>
           </div>
           
-          <div className="glass-card p-6 rounded-2xl hover:shadow-2xl transition-all transform hover:-translate-y-1">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+          <div className="glass-card p-6 rounded-2xl hover:shadow-2xl transition-all transform hover:-translate-y-2 animate-fadeInUp delay-300 hover-lift">
+            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 animate-bounce-subtle" style={{ animationDelay: '0.2s' }}>
               <BarChart3 className="w-6 h-6 text-green-600" />
             </div>
             <h3 className="text-xl font-bold mb-2">Usage Tracking</h3>
@@ -141,8 +141,8 @@ export default function HomePage() {
             </p>
           </div>
           
-          <div className="glass-card p-6 rounded-2xl hover:shadow-2xl transition-all transform hover:-translate-y-1">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+          <div className="glass-card p-6 rounded-2xl hover:shadow-2xl transition-all transform hover:-translate-y-2 animate-fadeInUp delay-400 hover-lift">
+            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 animate-bounce-subtle" style={{ animationDelay: '0.4s' }}>
               <Wallet className="w-6 h-6 text-green-600" />
             </div>
             <h3 className="text-xl font-bold mb-2">Smart Billing</h3>
