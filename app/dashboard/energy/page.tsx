@@ -64,13 +64,13 @@ export default function EnergyPage() {
         {/* Left Column - Charts */}
         <div className="col-span-2 space-y-6">
           {/* Energy Usage Trend */}
-          <div className="glass-card rounded-xl p-6">
+          <div className="glass-card rounded-xl p-6 animate-fadeInUp delay-500 hover-lift">
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h2 className="text-xl font-bold">Energy Usage Trend</h2>
                 <p className="text-sm text-gray-600">Daily consumption over the last 7 days</p>
               </div>
-              <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
+              <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium animate-bounce-subtle">
                 Real time Data
               </span>
             </div>
